@@ -208,7 +208,7 @@ Create a `DERPMAP` file with the following content:
 
 ```yaml
 regions:
-  1: null 
+  1: null # Disable DERP region with ID 1
   999:
     regionid: 999
     regioncode: "zlab"
