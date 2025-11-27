@@ -16,21 +16,21 @@ Password is value set for `SUPER_ADMIN_PASSWORD` in the `.env` file. Default pas
 - Username: `superadmin`
 - Password: `changeme!`
 
-![Login Form](../images/login.png)
+![Login Form](./images/login.png)
 
 ## Dashboard
 
 User and device overview
-![Dashboard](../images/dashboard.png)
+![Dashboard](./images/dashboard.png)
 
 Time usage of each user
-![Time usage](../images/time_usage.png)
+![Time usage](./images/time_usage.png)
 
 ## Device Management
 
 Manage device, approve, isolate, delete device in your organization
 
-![Manage device](../images/manage_device.png)
+![Manage device](./images/manage_device.png)
 
 See [Device Management](device-management.md) for more details
 
@@ -38,13 +38,13 @@ See [Device Management](device-management.md) for more details
 
 Manage peer connections in your organization
 
-![Peer connections](../images/peer_connections.png)
+![Peer connections](./images/peer_connections.png)
 
 ## Network Policy Management
 
 Manage ACL, groups, hosts, etc in your network
 
-![Policy management](../images/policy_management.png)
+![Policy management](./images/policy_management.png)
 
 See [Policy Management](polices.md) for more details
 
@@ -52,28 +52,28 @@ See [Policy Management](polices.md) for more details
 
 Manage posture checks in your organization
 
-![Posture checks](../images/posture_checks.png)
+![Posture checks](./images/posture_checks.png)
 
 ## Routing DNS 
 
 Manage routing and DNS in your organization
 
-![Routing DNS](../images/routing_dns.png)
+![Routing DNS](./images/routing_dns.png)
 
 ## Routing Configuration
 
 Manage routing configuration in your organization
 
-![Routing configuration](../images/routing_configuration.png)
+![Routing configuration](./images/routing_configuration.png)
 
 ## Audit Logs
 
 Audit logs show all actions performed by users and devices in your organization
 
-![Audit logs](../images/audit_logs.png)
+![Audit logs](./images/audit_logs.png)
 
 ## User Management
 
 Manage user accounts and device ownership
 
-![User management](../images/user_management.png)
+![User management](./images/user_management.png)
