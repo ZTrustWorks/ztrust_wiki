@@ -2,4 +2,3 @@
 
 ## 📚 Documentation
 
-## 🛠️ Installation
