@@ -205,27 +205,24 @@ If you see "DERP server OK", you're good to go!
 
 Create a `DERPMAP` file with the following content:
 
-```json
-{       
-       "999": {
-            "RegionID": 999,
-            "RegionCode": "zlab",
-            "RegionName": "GHTK ZLab",
-            "Latitude": 21.1393,
-            "Longitude": 105.8666,
-            "Nodes": [               
-                {
-                    "Name": "z",
-                    "RegionID": 999,
-                    "HostName": "ztrust-relay-02.ghtklab.com",
-                    "IPv4": "157.66.96.198", <!-- Public IP of derper server -->
-                    "IPv6": "",
-                    "CanPort80": true
-                }
-            ]
-        }
-    }
-}
+
+```yaml
+regions:
+  1: null 
+  999:
+    regionid: 999
+    regioncode: "zlab"
+    regionname: "GHTK ZLab"
+    nodes:
+      - name: 999z
+        regionid: 999
+        hostname: ztrust-relay-02.ghtklab.com
+        ipv4: 157.66.96.198
+        ipv6: 2001:db8::1
+        stunport: 0
+        stunonly: false
+        derpport: 0
+
 ```
 
 Host this `DERPMAP` file on your organization's CDN, then update your Headscale `config.yaml` to point to it. (Make sure your Headscale controller can reach this URL):
