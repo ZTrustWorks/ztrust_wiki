@@ -244,7 +244,7 @@ If any error occurred, please check logs via `docker logs <container_name>`
 <img src="images/setup_success.png" align="center">
 </div>
 
-### Verify 
+### Verification 
 
 Ensure all containers are running, focus on `headscale_zt`, `postgres`, `mongo`, `redis`, `ztrust_be`, `ztrust_fe`
 

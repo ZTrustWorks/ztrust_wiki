@@ -5,6 +5,7 @@
 | [2FA Configuration](2fa.md) | Setup Two-Factor Authentication |
 | [Device Management](device-management.md) | Manage devices, approval, isolation |
 | [Policy Management](polices.md) | Manage ACLs, groups, and hosts |
+| [DNS Management](dns-management.md) | Manage DNS in your organization |
 | [Node Gateway](node-gateway.md) | Node Gateway configuration |
 
 ## Authentication
