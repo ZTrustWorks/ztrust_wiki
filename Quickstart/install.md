@@ -1,6 +1,4 @@
-# Quickstart
-
-## Installation
+# Installation
 
 ## System Requirements
 
