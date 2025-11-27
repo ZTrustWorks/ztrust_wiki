@@ -213,6 +213,41 @@ You can monitor metrics of `mongo`, `postgres`, `redis`, `headscale` and `ZTrust
 <img src="images/be_monitoring.png" align="center">
 </div>
 
+## 3.3. Config frontend environment variables
+
+Modify `frontend/config/env-config.json` file
+
+```bash
+sudo cp frontend/config/env-config.example.json frontend/config/env-config.json
+
+sudo nano frontend/config/env-config.json
+```
+
+`ZTrust FE` will run on local port 33000, and `ZTrust FE` should be in internal network with `ZTrust BE`
+
+Minimum required environment variables:
+
+- `NEXT_PUBLIC_API_BASE_URL`: Replace with your backend URL with http protocol (e.g: https://internal-ztcontroller.ghtklab.com or http://10.110.86.17:8090)
+- `NEXT_PUBLIC_WS_BASE_URL`: Replace with your backend URL with ws protocol (e.g: wss://internal-ztcontroller.ghtklab.com or ws://10.110.86.17:8090)
+- `NEXT_PUBLIC_DOMAIN_APP`: Replace with your domain portal ZTrust (e.g. https://ztrust.ghtklab.com or http://10.110.86.17:33000)
+- `NEXT_PUBLIC_EMAIL_ORG_DOMAIN`: Replace with your organization domain (e.g. @ghtk.co)
+
+Example:
+```json
+{
+  "NEXT_PUBLIC_API_BASE_URL": "http://10.110.86.17:8090",
+  "NEXT_PUBLIC_WS_BASE_URL": "ws://10.110.86.17:8090",
+  "NEXT_PUBLIC_LOCATION": "",
+  "NEXT_PUBLIC_VERSION_APP": "1.0.0",
+  "NEXT_PUBLIC_DOMAIN_APP": "http://10.110.86.17:33000",
+  "NEXT_PUBLIC_EMAIL_ORG_DOMAIN": "@ghtk.co"
+}
+```
+
+<div>
+<img src="images/be_frontend.png" align="center">
+</div>
+
 ## 4. Run
 
 After configuration, run `setup.sh` script to start all containers.
