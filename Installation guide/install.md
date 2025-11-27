@@ -244,10 +244,6 @@ Example:
 }
 ```
 
-<div>
-<img src="images/be_frontend.png" align="center">
-</div>
-
 ## 4. Run
 
 After configuration, run `setup.sh` script to start all containers.
