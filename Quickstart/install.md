@@ -64,7 +64,7 @@ To ensure the system runs correctly, update these in `.env`:
 # ==============================================================================
 # PROJECT & ENVIRONMENT
 # ==============================================================================
-COMPOSE_PROJECT_NAME=zerotrust_be
+COMPOSE_PROJECT_NAME=ztrust_be
 # Environment: prod / testing / dev
 ENV=prod
 # Enable debug mode: true / false
@@ -256,15 +256,20 @@ After running the setup script, check the status of your deployment.
    docker logs -f headscale_zt
 
    # Backend
-   docker logs -f zerotrust_be
+   docker logs -f ztrust_be
    
    # Frontend
-   docker logs -f ztrust-next
+   docker logs -f ztrust_fe
    ```
 
 ## Uninstall
 
 To uninstall the application, run the following command:
+
+> [!IMPORTANT]
+> This will remove all containers, networks, volumes, and images created by the setup script.
+>
+
 
 ```bash
 sudo ./cleanup.sh
