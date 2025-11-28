@@ -55,7 +55,7 @@ Config your public domain in `server_url` in `backend/config/headscale/config.ya
 Config DERP server
 if you have your own DERP server, config it in `backend/config/headscale/config.yaml`
 
-For setup DERP server, please follow [this](https://github.com/ZTrustWorks/ztrust_wiki/blob/main/Installation%20guide/derp_server.md) guide
+For setup DERP server, please follow [this](https://github.com/ZTrustWorks/ztrust_wiki/blob/main/Installation%20guide/derp-server.md) guide
 
 DERP can be configured via `urls` (eg. https://derp.ghtklab.com) or `paths` (use local file `derp-example.yaml`)
 
