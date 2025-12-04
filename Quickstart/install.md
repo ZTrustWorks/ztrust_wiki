@@ -2,7 +2,7 @@
 
 ## System Requirements
 
-| Component | Minimum (Lab / PoC) | Recommended ~500 agents (Production) |
+| Component | Minimum (Lab / PoC) ~100 agents | Recommended 1000+ agents (Production) |
 |-----------|----------------------|---------------------------|
 | CPU       | 4 cores              | 16 cores                 |
 | RAM       | 8 GB                 | 24 GB (≥ 32 GB if many service, users, devices) |
