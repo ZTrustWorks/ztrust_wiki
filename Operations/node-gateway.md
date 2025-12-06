@@ -30,29 +30,45 @@
 - Chú ý khi tạo tài khoản node gateway cần chọn `Type = Server` và số lượng thiết bị tối đa là 1 hoặc 2 (trong trường hợp sử dụng LB) để đảm bảo việc `Chống chối bỏ`.
 - Tên của tài khoản nên có một cấu trúc cố định để dễ quản lý và rà soát khi có lỗi. VD: `{subnetname}_{hostname}_gateway_01` => marketing_haproxy_gateway_01, accountant_haproxy_gateway_01
 ![img.png](images/add-user-node-gateway.png)
-### 2. Quản trị việc tạo Auth Key cho từng tài khoản phụ trách node gateway
+### 2. Quản trị viên tạo Auth Key cho từng tài khoản phụ trách node gateway
 - Khi tạo Auth Key cho tài khoản cần xác định:
   - **Expire**: Thời gian hết hạn của key
   - **Reusable**: Cho phép key có thể được dùng lại trong phiên đăng nhập khác của node (trong trường hợp cần đăng nhập lại hoặc đăng nhập cho LB)
   - **Ephemeral** (Không khuyến nghị bật cho node gateway): Xác định tạo khóa cho node tạm thời, ở trường hợp này key sẽ tự hết hạn hoặc bị xóa khi node ngắt kết nối
 
 ![img.png](images/create-auth_key.png)
-### 3. Đăng nhập các tài khoản vừa tạo và đăng ký subnet router cho Ztrust Network
+### 3. Tại từng Note Gateway, thực hiện đăng nhập các tài khoản vừa tạo và đăng ký subnet router cho Ztrust Network
+**Đảm bảo các node gateway đều đang cho phép ip forward (Bắt buộc).**
+```bash
+echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 
+```
 **Trên Ztrust Agent 3 (Marketing Subnet)**
 ```bash
-tailscale up \
-  --advertise-routes=10.10.x.0/24 \
-  --accept-dns=false \ 
-  --login-server https://ztcontroller.{org_domain}
-  --auth-key {Auth Key của tài khoản marketing_haproxy_gateway_01 vừa tạo ở bước 2}
+sudo tailscale up \
+--login-server https://ztcontroller.{org_domain} \
+--auth-key {Auth Key của tài khoản marketing_haproxy_gateway_01 vừa tạo ở bước 2} \
+--advertise-routes=10.10.x.0/24 \
+--accept-dns=false \
+--force-reauth
 ```
 **Trên Ztrust Agent 4 (Accountant Subnet)**
 ```bash
-tailscale up \
-  --advertise-routes=10.11.x.0/24 \
-  --accept-dns=false \ 
-  --login-server https://ztcontroller.{org_domain}
-  --auth-key {Auth Key của tài khoản accountant_haproxy_gateway_01 vừa tạo ở bước 2}
+sudo tailscale up \
+--login-server https://ztcontroller.{org_domain} \
+--auth-key {Auth Key của tài khoản accountant_haproxy_gateway_01 vừa tạo ở bước 2} \
+--advertise-routes=10.11.x.0/24 \
+--accept-dns=false \
+--force-reauth
 ```
+
 ### 4. Tại Ztrust Controller, thực hiện phê duyệt cho phép các subnet router vận hành cho mạng
+![img.png](images/accept_node.png)
+![img.png](images/accept_node_2.png)
+
+**Đợi ít phút để thông tin được cập nhật cho toàn mạng, lúc này trạng thái subnet router sẽ được chuyển sang là `Serving`**
+![img.png](images/accept_node3.png)
+
+### 5. Tại Ztrust Controller, thực hiện cấu hình chính sách cho phép truy cập
