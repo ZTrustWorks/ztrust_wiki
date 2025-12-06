@@ -8,6 +8,7 @@ BeyondCorp is Google's implementation of the zero trust model. It builds upon a 
 - How to Measure Zero Trust Maturity: https://www.cisa.gov/sites/default/files/2023-04/CISA_Zero_Trust_Maturity_Model_Version_2_508c.pdf
 
 <i>If you have read the documentation or have a good understanding of Zero Trust, you can start trying to implement and apply Zero Trust with ZTrust.</i>
+
 ## 📚 ZTrust Documentation
 
 | Name | Reference |
@@ -18,3 +19,9 @@ BeyondCorp is Google's implementation of the zero trust model. It builds upon a 
 | Operations | [Operations guide](Operations/README.md) |
 | Proof of Concept | [Proof of Concept guide](Proof%20of%20Concept%20guide/README.md) |
 
+## 📚 Our Community
+| Name             | Reference                                                        |
+|------------------|------------------------------------------------------------------|
+| Github           | https://github.com/ZTrustWorks                                   |
+| Telegram         | https://t.me/+zGUanvb2oPQwM2I9 |
+| Facebook         | https://www.facebook.com/share/g/17S8eQrPFv/|
