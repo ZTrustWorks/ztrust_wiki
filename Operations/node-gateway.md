@@ -74,3 +74,11 @@ sudo tailscale up \
 ![img.png](images/accept_node3.png)
 
 ### 5. Tại Ztrust Controller, thực hiện cấu hình chính sách cho phép truy cập
+Thêm chính sách chỉ cho phép các nhân viên marketing được truy cập các nghiệp vụ của marketing trên dải 10.10.x.0/24 và port là 80, 443. Cấu hình chính  sách như sau:
+- Quản lý và tạo chính sách tại màn `Network Policy`
+![img.png](images/create_policy.png)
+- Thêm thông tin chi tiết cho chính sách:
+![img.png](images/create_policy2.png)
+- Thực hiện chọn `Enabled` (mặc định các chính sách mới tạo sẽ không được bật tự động), sau đó chọn `Commit changes` để xác nhận việc cập nhật chính sách
+![img.png](images/create_policy3.png)
+
