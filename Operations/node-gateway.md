@@ -25,6 +25,8 @@
 - Ztrust Agent 1 có quyền truy cập vào các tài nguyên của Accountant Subnet và Marketing Subnet, Ztrust Agent 3 là thiết bị (có thể là máy tính hoặc máy chủ) thuộc Marketing Subnet
 - Ztrust Agent 2 chỉ có quyền truy cập vào các tài nguyên của Marketing Subnet
 
+Ztrust Agent sử dụng "core engine" là tailscale, đối với máy chủ do cần kết nối liên tục và không có nhu cầu đổi người dùng nên có thể sử dụng agent là tailscale. Cài đặt tailscale trên máy chủ theo lệnh sau: `curl -fsSL https://tailscale.com/install.sh | sh`
+
 ## Các bước cấu hình
 ### 1. Quản trị viên tạo tài khoản riêng phụ trách từng node gateway
 - Chú ý khi tạo tài khoản node gateway cần chọn `Type = Server` và số lượng thiết bị tối đa là 1 hoặc 2 (trong trường hợp sử dụng LB) để đảm bảo việc `Chống chối bỏ`.
