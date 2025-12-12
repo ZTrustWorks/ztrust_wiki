@@ -25,7 +25,7 @@
 - Ztrust Agent 1 có quyền truy cập vào các tài nguyên của Accountant Subnet và Marketing Subnet, Ztrust Agent 3 là thiết bị (có thể là máy tính hoặc máy chủ) thuộc Marketing Subnet
 - Ztrust Agent 2 chỉ có quyền truy cập vào các tài nguyên của Marketing Subnet
 
-Ztrust Agent sử dụng "core engine" là tailscale, đối với máy chủ do cần kết nối liên tục và không có nhu cầu đổi người dùng nên có thể sử dụng agent là tailscale. Cài đặt tailscale trên máy chủ theo lệnh sau: `curl -fsSL https://tailscale.com/install.sh | sh`
+Phiên bản Ztrust Agent dành cho gateway server liên hệ với team sản phẩm để tải về và cài đặt 
 
 ## Các bước cấu hình
 ### 1. Quản trị viên tạo tài khoản riêng phụ trách từng node gateway
@@ -49,21 +49,11 @@ sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 ```
 **Trên Ztrust Agent 3 (Marketing Subnet)**
 ```bash
-sudo tailscale up \
---login-server https://ztcontroller.{org_domain} \
---auth-key {Auth Key của tài khoản marketing_haproxy_gateway_01 vừa tạo ở bước 2} \
---advertise-routes=10.10.x.0/24 \
---accept-dns=false \
---force-reauth
+sudo ztrustcli login --server=https://ztcontroller.{org_domain} --auth-key={marketing_haproxy_gateway_01 auth key} --advertise-routes="10.10.x.0/24"
 ```
 **Trên Ztrust Agent 4 (Accountant Subnet)**
 ```bash
-sudo tailscale up \
---login-server https://ztcontroller.{org_domain} \
---auth-key {Auth Key của tài khoản accountant_haproxy_gateway_01 vừa tạo ở bước 2} \
---advertise-routes=10.11.x.0/24 \
---accept-dns=false \
---force-reauth
+sudo ztrustcli login --server=https://ztcontroller.{org_domain} --auth-key={accountant_haproxy_gateway_01 auth key} --advertise-routes="10.11.x.0/24"
 ```
 
 ### 4. Tại Ztrust Controller, thực hiện phê duyệt cho phép các subnet router vận hành cho mạng
