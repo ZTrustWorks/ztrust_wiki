@@ -247,6 +247,10 @@ cp <your-controller-domain>.crt backend/certs/
 cp <your-controller-domain>.key backend/certs/
 ```
 
+<div>
+  <img src="images/be_certs.png" align="center">
+</div>
+
 **Step 3: Mount certs directory into Docker**
 Ensure the certs directory is mounted into the container (read-only is recommended):
 
