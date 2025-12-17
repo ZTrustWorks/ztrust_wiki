@@ -25,6 +25,8 @@
 - Ztrust Agent 1 có quyền truy cập vào các tài nguyên của Accountant Subnet và Marketing Subnet, Ztrust Agent 3 là thiết bị (có thể là máy tính hoặc máy chủ) thuộc Marketing Subnet
 - Ztrust Agent 2 chỉ có quyền truy cập vào các tài nguyên của Marketing Subnet
 
+Phiên bản Ztrust Agent dành cho gateway server liên hệ với team sản phẩm để tải về và cài đặt 
+
 ## Các bước cấu hình
 ### 1. Quản trị viên tạo tài khoản riêng phụ trách từng node gateway
 - Chú ý khi tạo tài khoản node gateway cần chọn `Type = Server` và số lượng thiết bị tối đa là 1 hoặc 2 (trong trường hợp sử dụng LB) để đảm bảo việc `Chống chối bỏ`.
@@ -47,21 +49,11 @@ sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 ```
 **Trên Ztrust Agent 3 (Marketing Subnet)**
 ```bash
-sudo tailscale up \
---login-server https://ztcontroller.{org_domain} \
---auth-key {Auth Key của tài khoản marketing_haproxy_gateway_01 vừa tạo ở bước 2} \
---advertise-routes=10.10.x.0/24 \
---accept-dns=false \
---force-reauth
+sudo ztrustcli login --server=https://ztcontroller.{org_domain} --auth-key={marketing_haproxy_gateway_01 auth key} --advertise-routes="10.10.x.0/24"
 ```
 **Trên Ztrust Agent 4 (Accountant Subnet)**
 ```bash
-sudo tailscale up \
---login-server https://ztcontroller.{org_domain} \
---auth-key {Auth Key của tài khoản accountant_haproxy_gateway_01 vừa tạo ở bước 2} \
---advertise-routes=10.11.x.0/24 \
---accept-dns=false \
---force-reauth
+sudo ztrustcli login --server=https://ztcontroller.{org_domain} --auth-key={accountant_haproxy_gateway_01 auth key} --advertise-routes="10.11.x.0/24"
 ```
 
 ### 4. Tại Ztrust Controller, thực hiện phê duyệt cho phép các subnet router vận hành cho mạng
@@ -72,3 +64,11 @@ sudo tailscale up \
 ![img.png](images/accept_node3.png)
 
 ### 5. Tại Ztrust Controller, thực hiện cấu hình chính sách cho phép truy cập
+Thêm chính sách chỉ cho phép các nhân viên marketing được truy cập các nghiệp vụ của marketing trên dải 10.10.x.0/24 và port là 80, 443. Cấu hình chính  sách như sau:
+- Quản lý và tạo chính sách tại màn `Network Policy`
+![img.png](images/create_policy.png)
+- Thêm thông tin chi tiết cho chính sách:
+![img.png](images/create_policy2.png)
+- Thực hiện chọn `Enabled` (mặc định các chính sách mới tạo sẽ không được bật tự động), sau đó chọn `Commit changes` để xác nhận việc cập nhật chính sách
+![img.png](images/create_policy3.png)
+
