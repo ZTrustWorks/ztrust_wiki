@@ -140,6 +140,8 @@ You can change database connection in `.env` if you want to use external databas
 
 ### Google OAuth Configuration
 
+*Follow this [link](https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid) for get client ID* 
+
 Add ClientID and ClientSecret from Google OAuth in `.env`
 
 - `GOOGLE_CLIENT_ID`: Client ID from Google OAuth

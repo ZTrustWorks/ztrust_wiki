@@ -145,6 +145,7 @@ TS_NET_DIR=/app/.tsnet-data
 # ==============================================================================
 # GOOGLE OAUTH
 # ==============================================================================
+# Follow this link for get client ID https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid
 # Google Client ID
 GOOGLE_CLIENT_ID=xxx
 # Google Client Secret
@@ -213,6 +214,13 @@ POSTURE_EVAL_WORKERS=16
 
 # Custom Protocol Agent Default: ztna-ghtk-agent://auth/callback
 CUSTOM_PROTOCOL_AGENT=ztna-ghtk-agent://auth/callback 
+
+# Cert for GRPC (Required for secure gRPC communication)
+# Contact admin to get the proper certs.
+# Backend TLS certificate (issued by ZTrust Root CA)
+CERT_FILE_PATH=/etc/ztrust/certs/ztcontroller.ghtklab.com.crt
+# Private key corresponding to the certificate above
+KEY_CERT_FILE_PATH=/etc/ztrust/certs/ztcontrollerghtklab.com.key
 
 # ==============================================================================
 # MONITORING
