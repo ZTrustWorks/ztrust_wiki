@@ -5,7 +5,7 @@
 ## Nhu cầu
 - Kiểm soát quyền truy cập của từng thiết bị nhân viên vào các vùng mạng nội bộ.
 - Một thiết bị có thể truy cập vào một hoặc nhiều subnet.
-- Mỗi subnet chỉ cần một thiết bị chạy Ztrust Agent (Tailscale client) đóng vai trò gateway, không yêu cầu cài đặt trên toàn bộ server.
+- Mỗi subnet chỉ cần một thiết bị chạy Ztrust Agent đóng vai trò gateway, không yêu cầu cài đặt trên toàn bộ server.
 - Triển khai gateway để đăng ký subnet vào Ztrust Network
 
 **Ví dụ triển khai**
