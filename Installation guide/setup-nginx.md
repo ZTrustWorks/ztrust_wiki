@@ -92,6 +92,17 @@ server {
     listen 443 ssl http2;
     server_name ztcontroller.ghtklab.com internal-ztcontroller.ghtklab.com; # Replace with your domains
 
+    # NOTE:
+    # If you DON'T have a wildcard certificate (like *.ghtklab.com),
+    # do NOT reuse one certificate for multiple domains.
+    #
+    # Each domain must have its OWN server block and certificate.
+    # Example:
+    #   server_name ztcontroller.ghtklab.com
+    #   server_name internal-ztcontroller.ghtklab.com
+    #
+    # Using the wrong certificate will cause TLS / certificate mismatch errors. 
+    
     # SSL Configuration
     ssl_certificate     /etc/ssl/certs/ztcontroller.ghtklab.com.crt;
     ssl_certificate_key /etc/ssl/private/ztcontroller.ghtklab.com.key;
