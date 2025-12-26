@@ -10,7 +10,7 @@ Tab `Router Gateway` -> Chọn Action với từng node gateway cần phê duy�
 ![img.png](images/approve_routes.png)
 3. Đợi ít phút để cập nhật thông tin cho toàn mạng. Tại thời điểm hiện tại, các lưu lượng khi đến subnet 10.110.24.141/32 sẽ được node-gateway phụ trách chuyển tiếp.
 4. Kết quả người dùng có thể truy cập được các vùng mạng private trên on-prem của tổ chức.
-5. 
+
 Trước khi có triển khai subnet route
 ![img.png](images/subnet_route3.png)
 Sau khi có triển khai subnet route
