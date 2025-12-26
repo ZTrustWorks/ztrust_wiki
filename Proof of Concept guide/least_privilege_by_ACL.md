@@ -28,3 +28,8 @@ Tab `Network Policy` -> ACLs -> Create ACL
 Cần click `Enabled` để đảm bảo chính sách được áp dụng (quá trình đợi diễn ra trong khoảng 1 phút)
 ![img_1.png](images/enabled_acl.png)
 
+**Kết quả**
+- Nhân sự dongtv28 và các nhân sự thuộc nhóm data_entry có thể truy cập  10.110.84.110 port 3000, 8000, 8005
+![img.png](images/output_acl.png)
+- Nhân sự dongtv28 và các nhân sự thuộc nhóm data_entry không thể truy cập  10.110.84.110 với port 3001
+![img.png](images/output_acl2.png)
