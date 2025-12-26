@@ -22,17 +22,18 @@ Before you begin, ensure you have the following:
 ### Step 1: Install Certbot
 
 ```bash
-sudo apt install certbot
+sudo apt update
+sudo apt install -y certbot python3-certbot-nginx
 ```
 
 ### Step 2: Generate Self-Signed Certificate
 
 ```bash
 # For ZTrust Controller
-sudo certbot certonly --standalone -d ztcontroller.ghtklab.com
+sudo certbot --nginx -d ztcontroller.ghtklab.com
 
 # For ZTrust Portal
-sudo certbot certonly --standalone -d ztrust.ghtklab.com
+sudo certbot --nginx -d ztrust.ghtklab.com
 ```
 
 Enter your email address and agree to the terms of service.
