@@ -1,4 +1,4 @@
-# Quản lý quyền truy cập của thiết bị khi vào mạng ztrust
+# Node chỉ truy cập đúng dịch vụ được cấp quyền
 
 ## 1. Tạo chính sách
 
@@ -28,22 +28,3 @@ Tab `Network Policy` -> ACLs -> Create ACL
 Cần click `Enabled` để đảm bảo chính sách được áp dụng (quá trình đợi diễn ra trong khoảng 1 phút)
 ![img_1.png](images/enabled_acl.png)
 
-## 2. Tạo nhóm người dùng
-
-Tab `Network Policy` -> Groups -> Create Groups
-
-1. Nhập các thông tin gồm `Group name`, `Description`, `Select Users`
-   ![img.png](images/create_group.png)
-2. Click `Create Group` để lưu lại thông tin
-3. Click `Comit Changes` tương tự như bước tạo ACL.
-
-## 3. Viết lại tên cho địa chỉ IP
-
-Tab `Network Policy` -> Hosts-> Create Host
-
-![img.png](images/host.png)
-
-## 4. Quản lý lịch sử thay đổi chính sách
-
-1. Màn hình hiển thị lịch sử các lần `comit ACL`, cung cấp tính năng so sánh sự thay đổi giữa các chính sách, tìm kiếm chính sách dưới dạng code
-   ![img.png](images/history_version_acl.png)
