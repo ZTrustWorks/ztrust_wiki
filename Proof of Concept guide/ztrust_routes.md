@@ -11,10 +11,11 @@ Tab `Router Gateway` -> Chọn Action với từng node gateway cần phê duy�
 3. Đợi ít phút để cập nhật thông tin cho toàn mạng. Tại thời điểm hiện tại, các lưu lượng khi đến subnet 10.110.24.141/32 sẽ được node-gateway phụ trách chuyển tiếp.
 4. Kết quả người dùng có thể truy cập được các vùng mạng private trên on-prem của tổ chức.
 
-Trước khi có triển khai subnet route
-![img.png](images/subnet_route3.png)
-Sau khi có triển khai subnet route
-![img.png](images/subnet_route.png)
+  Trước khi có triển khai subnet route
+  ![img.png](images/subnet_route3.png)
+  
+  Sau khi có triển khai subnet route
+  ![img.png](images/subnet_route.png)
 
 **Chú ý:**
 - Subnet route chỉ hoạt động khi đạt đồng thời 2 điều kiện sau: Có node gateway khai báo subnet route và có sự cho phép của ztrust controller.
