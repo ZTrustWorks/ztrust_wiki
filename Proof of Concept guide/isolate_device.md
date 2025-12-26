@@ -9,3 +9,4 @@ You can isolate a device to prevent it from accessing the network immediately, t
 You can unisolate a device to allow it to access the network in Tab `Node Isolation`
 
 ![Unisolate device](./images/unisolate_device.png)
+
