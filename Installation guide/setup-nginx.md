@@ -22,17 +22,18 @@ Before you begin, ensure you have the following:
 ### Step 1: Install Certbot
 
 ```bash
-sudo apt install certbot
+sudo apt update
+sudo apt install -y certbot python3-certbot-nginx
 ```
 
 ### Step 2: Generate Self-Signed Certificate
 
 ```bash
 # For ZTrust Controller
-sudo certbot certonly --standalone -d ztcontroller.ghtklab.com
+sudo certbot --nginx -d ztcontroller.ghtklab.com
 
 # For ZTrust Portal
-sudo certbot certonly --standalone -d ztrust.ghtklab.com
+sudo certbot --nginx -d ztrust.ghtklab.com
 ```
 
 Enter your email address and agree to the terms of service.
@@ -92,6 +93,17 @@ server {
     listen 443 ssl http2;
     server_name ztcontroller.ghtklab.com internal-ztcontroller.ghtklab.com; # Replace with your domains
 
+    # NOTE:
+    # If you DON'T have a wildcard certificate (like *.ghtklab.com),
+    # do NOT reuse one certificate for multiple domains.
+    #
+    # Each domain must have its OWN server block and certificate.
+    # Example:
+    #   server_name ztcontroller.ghtklab.com
+    #   server_name internal-ztcontroller.ghtklab.com
+    #
+    # Using the wrong certificate will cause TLS / certificate mismatch errors. 
+    
     # SSL Configuration
     ssl_certificate     /etc/ssl/certs/ztcontroller.ghtklab.com.crt;
     ssl_certificate_key /etc/ssl/private/ztcontroller.ghtklab.com.key;

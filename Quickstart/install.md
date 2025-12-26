@@ -9,7 +9,7 @@
 | Storage   | 30 GB SSD            | 100 GB SSD / NVMe (expandable) |
 | OS        | Linux (Ubuntu/CentOS recommended) | Linux (Ubuntu/CentOS recommended) |
 | Docker    | Docker & Docker Compose installed | Docker & Docker Compose installed |
-| Domain    | Optional (can use local IP) | Public domain with valid SSL certificate (no self-signed) for Backend and Headscale, internal domain for Frontend |
+| Domain    | Optional (can use local IP) | Public domain with valid SSL certificate (no self-signed) for Controller and Headscale, internal domain for Frontend |
 | Network   | Local network        | Public network, Firewall, Reverse Proxy (Nginx/Caddy) |
 
 ## Quick Start
@@ -19,7 +19,7 @@ Config `.env` file first.
 - Ensure `POSTGRES_URL` and credentials are correct.
 - Ensure `REDIS_SENTINEL_ADDRS` and credentials are correct.
 
-The `setup.sh` script automates the entire setup for both **Backend** and **Frontend**.
+The `setup.sh` script automates the entire setup for both **Controller** and **Frontend**.
 
 ### 1. Run Setup Script
 
@@ -31,14 +31,14 @@ sudo ./setup.sh
 This will:
 - Generate necessary keys and configurations.
 - Create `.env` from defaults if missing.
-- Start all services (Mongo, Redis, Postgres, Headscale, Backend, Frontend).
+- Start all services (Mongo, Redis, Postgres, Headscale, Controller, Frontend).
 
 ### 2. Access Services
 
 After the script completes, access your services at:
 
 - **Frontend**: `http://<YOUR_HOST_IP>:33000`
-- **Backend**: `http://<YOUR_HOST_IP>:8090`
+- **Controller**: `http://<YOUR_HOST_IP>:8090`
 - **Headscale**: `http://<YOUR_HOST_IP>:8080`
 
 > **Note**: Replace `<YOUR_HOST_IP>` with your server's actual IP address (e.g., `10.110.86.17`).
@@ -81,10 +81,10 @@ HOSTNAME=zerotrust-be
 # Hostname of BE in Tailnet
 TS_HOSTNAME=zerotrust-be
 
-# Control API Address (Bind Address) (Backend running on this address)
+# Control API Address (Bind Address) (Controller running on this address)
 ENDPOINT_CONTROLLER_ADDR=0.0.0.0:8090
-# Public URL for Backend (e.g., https://ztcontroller.ghtklab.com)
-# Ensure your public URL is accessible from the internet (for agent to connect to backend)
+# Public URL for Controller (e.g., https://ztcontroller.ghtklab.com)
+# Ensure your public URL is accessible from the internet (for agent to connect to controller)
 ENDPOINT_CONTROLLER_URL=https://ztcontroller.ghtklab.com
 # Frontend URL (e.g., https://ztrust.ghtklab.com)
 # The portal domain for admin to access the portal
@@ -98,7 +98,7 @@ GIN_METRICS_ADDR=127.0.0.1:9099
 # ==============================================================================
 # DATABASE: MONGODB (Required)
 # ==============================================================================
-# MongoDB connection for backend
+# MongoDB connection for controller
 MONGO_URI=mongodb://root:changeme!@10.110.86.17:27027,10.110.86.17:27028,10.110.86.17:27029/?authSource=admin&replicaSet=rs0
 DB_NAME=ztrust_testing_v1
 MONGO_ROOT_USERNAME=root
@@ -108,7 +108,7 @@ MONGO_REPLICA_SET_NAME=rs0
 # ==============================================================================
 # DATABASE: POSTGRESQL (Required)
 # ==============================================================================
-# Postgres connection for headscale and backend
+# Postgres connection for headscale and controller
 POSTGRES_URL=postgres://postgres:changeme!@10.110.86.17:5432/headscale?sslmode=disable
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=changeme!
@@ -117,7 +117,7 @@ POSTGRES_DB=headscale
 # ==============================================================================
 # DATABASE: REDIS (Required)
 # ==============================================================================
-# Redis connection for backend
+# Redis connection for controller
 REDIS_SENTINEL_ADDRS=10.110.86.17:26379,10.110.86.17:26380,10.110.86.17:26381
 REDIS_MASTER_NAME=redis-master
 REDIS_PASSWORD=changeme!
@@ -127,13 +127,13 @@ REDIS_MASTER_PORT=36379
 # ==============================================================================
 # HEADSCALE & TAILSCALE
 # ==============================================================================
-# Headscale Server URL (Backend call headscale via internal network)
+# Headscale Server URL (Controller call headscale via internal network)
 HEADSCALE_SERVER_URL=http://headscale_zt:8080
 # API Key for Headscale (Generated automatically)
 HEADSCALE_APIKEY=xxx
 # Auth Key for Tailscale (Generated automatically)
 TAILSCALE_AUTHKEY=xxx
-# Headscale User for Backend
+# Headscale User for controller
 HEADSCALE_USER_BE=ep_controller
 # Headscale Database Type: sqlite / postgres
 HEADSCALE_DB_TYPE=postgres
@@ -145,20 +145,21 @@ TS_NET_DIR=/app/.tsnet-data
 # ==============================================================================
 # GOOGLE OAUTH
 # ==============================================================================
+# Follow this link for get client ID https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid
 # Google Client ID
 GOOGLE_CLIENT_ID=xxx
 # Google Client Secret
 GOOGLE_CLIENT_SECRET=xxx
 # Google Redirect URL, e.g. https://ztcontroller.ghtklab.com/public/api/v1/auth/google/callback
 # You must add this callback URL in Google API Console
-# Format: https://<your-backend-domain>/public/api/v1/auth/google/callback
+# Format: https://<your-controller-domain>/public/api/v1/auth/google/callback
 GOOGLE_REDIRECT_URL=
 
 # ==============================================================================
 # SECURITY & TOKENS
 # ==============================================================================
 # Static Agent Token
-# Static token for agent to authenticate with backend
+# Static token for agent to authenticate with controller
 AGENT_STATIC_TOKEN=5^rSXTyBCRQnN^sH86!SXtTc88vuT%dXTS5UoW9BqH%SyTJcQW62EFXTRbp9EUJxXggCEig45qEQxfVKJnB2*tB74MMog2wM64Kaa7zXfx6hC2D4YS6zAd5c4UVr
 # JWT Key Encryption Key (32-bytes hex)
 JWT_KEK=1ceea52ff71b878c458cc0632f9dbc9506aaca822090922bfe63c2d56277a8e4
@@ -214,6 +215,13 @@ POSTURE_EVAL_WORKERS=16
 # Custom Protocol Agent Default: ztna-ghtk-agent://auth/callback
 CUSTOM_PROTOCOL_AGENT=ztna-ghtk-agent://auth/callback 
 
+# Cert for GRPC (Required for secure gRPC communication)
+# Contact admin to get the proper certs.
+# Backend TLS certificate (issued by ZTrust Root CA)
+CERT_FILE_PATH=/etc/ztrust/certs/ztcontroller.ghtklab.com.crt
+# Private key corresponding to the certificate above
+KEY_CERT_FILE_PATH=/etc/ztrust/certs/ztcontrollerghtklab.com.key
+
 # ==============================================================================
 # MONITORING
 # ==============================================================================
@@ -253,7 +261,7 @@ After running the setup script, check the status of your deployment.
    # Headscale
    docker logs -f headscale_zt
 
-   # Backend
+   # Controller
    docker logs -f ztrust_be
    
    # Frontend
