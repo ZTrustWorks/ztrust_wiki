@@ -6,7 +6,7 @@ Tab `Network Policy` -> ACLs -> Chọn ACL muốn sửa
 
 1. Nội dung ACL muốn sửa như sau:
 ![img.png](images/edit_acl.png)
-1. Sửa quyền nhân sự dongtv28 không còn được truy cập 10.110.84.110 port 3000, 8000, 8005
+2. Sửa quyền nhân sự dongtv28 không còn được truy cập 10.110.84.110 port 3000, 8000, 8005
    ```commandline
    Name: Allow Data Entry
    Description: Cho phép nhóm nhân viên nhập liệu truy cập hệ thống 10.110.84.110 port 3000, 8000, 8005
@@ -17,10 +17,10 @@ Tab `Network Policy` -> ACLs -> Chọn ACL muốn sửa
    ```
    **Sources/Destinations hỗ trợ các kiểu:** `IP/CIDR`, `Group`, `Host`, `User `
     ![img.png](images/edit_acl2.png)
-2. Click `Save Changes` để lưu lại chính sách. Thông tin chính sách sau khi loại bỏ người dùng `dongtv28`
+3. Click `Save Changes` để lưu lại chính sách. Thông tin chính sách sau khi loại bỏ người dùng `dongtv28`
     ![img.png](images/edit_acl3.png)
 
-3. Click `Comit Changes`, giao diện hiển thị các dòng chính sách thay đổi, quản trị viên cần điền lý do comit và thực hiện click `Confirm & Submit`
+Click `Comit Changes`, giao diện hiển thị các dòng chính sách thay đổi, quản trị viên cần điền lý do comit và thực hiện click `Confirm & Submit`
 ![img.png](images/edit_acl4.png)
 
 **Kết quả**
