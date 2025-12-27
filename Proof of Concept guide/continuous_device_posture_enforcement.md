@@ -1,0 +1,1 @@
+# Thiết bị mất compliance → quyền bị thu hồi
