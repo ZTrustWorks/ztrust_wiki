@@ -31,7 +31,7 @@ Cần click `Enabled` để đảm bảo chính sách được áp dụng (quá 
 
 **Kết quả**
 - Nhân sự dongtv28 và các nhân sự thuộc nhóm data_entry truy cập trong khoảng thời gian được cho phép
-
+![img.png](images/jit_acl77.png)
 - Nhân sự dongtv28 và các nhân sự thuộc nhóm data_entry không thể truy cập trong khoảng thời gian trái phép
-
+![img_1.png](images/jit_acl88.png)
 
