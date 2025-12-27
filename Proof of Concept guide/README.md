@@ -9,3 +9,4 @@
 | [Just-In-Time ACL](just_in_time_access.md)                      | Just-In-Time Access with Time Limitation                |
 | [Real-time ACL Changes](realtime_acl_change.md)                 | ACL changes take effect in real time       |
 | [Enterprise-Scale ZTrust Network](ztrust_routes.md)             | Scaling the ZTrust Network for Enterprises |
+| [Pre-Access Device Validation](pre-access_device_validation.md) | Non-Compliant Device Is Not Allowed to Join the Network |

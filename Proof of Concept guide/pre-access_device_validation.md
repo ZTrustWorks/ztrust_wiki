@@ -1,0 +1,1 @@
+# Thiết bị không đạt chuẩn → không được join Ztrust
