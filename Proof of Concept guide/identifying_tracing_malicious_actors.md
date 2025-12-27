@@ -1,0 +1,1 @@
+# Truy vết, khoanh vùng các đối tượng nguy hiểm
