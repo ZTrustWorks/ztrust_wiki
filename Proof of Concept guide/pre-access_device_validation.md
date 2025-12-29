@@ -11,4 +11,5 @@ Khi người dùng thuộc nhóm SEC truy cập mà không cài đặt đủ ph�
 ![img.png](posture_check2.png)
 
 Đồng thời một cảnh báo cũng được chuyển đến cho quản trị viên
+
 ![img.png](alert_porture.png)
