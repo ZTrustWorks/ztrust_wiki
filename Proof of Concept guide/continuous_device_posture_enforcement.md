@@ -9,6 +9,7 @@ Ví dụ: Yêu các thiết bị thuộc nhóm SEC khi tham gia vào mạng Ztru
 Người dùng `hoandm2` thuộc nhóm SEC đang truy cập mạng Ztrust nhưng có dấu hiệu tắt phần mềm `Velociraptor` và `wazuh-agent`. Ngay lập tức bị đẩy ra khỏi mạng Ztrust.
 
 Trên máy `hoandm2` sẽ hiển thị thông tin sau:
+
 ![img.png](continuous_posture_check.png)
 
 Trên kênh cảnh báo của quản trị viên cũng hiển thị cảnh bảo:
