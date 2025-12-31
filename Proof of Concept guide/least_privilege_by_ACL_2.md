@@ -1,35 +1,33 @@
-# Node chỉ truy cập đúng dịch vụ được cấp quyền
+# Node Access Restricted to Explicitly Authorized Services
 
-## 1. Tạo chính sách
+## 1. Policy Creation
 
-Tab `Network Policy` -> ACLs -> Create ACL
+Go to the `Network Policy` tab → ACLs → Create ACL.
 
-1. Cho phép các thiết bị được chỉ định truy cập hệ thống portal 10.110.240.48 port 80, 443
+1. Allow only the specified devices to access the portal system at 10.110.240.48 on ports 80 and 443.
    
     **Sources/Destinations hỗ trợ các kiểu:** `IP/CIDR`, `Group`, `Host`, `User `
-    ```commandline
+    ```
    Name: Allow Data Entry
-   Description: Cho phép các thiết bị được chỉ định truy cập hệ thống portal 10.110.240.48 port 80, 443
+   Description: Allow the specified devices to access the portal system at 10.110.240.48 on ports 80 and 443
    Protocol: ALL (TCP, UDP)
-   ACL Effective Time Range: None (Do không có yêu cầu về lịch truy cập)
+   ACL Effective Time Range: None (no access schedule is required)
    Source: 100.64.17.76
    Destinations: 10.110.240.48:80, 10.110.240.48:443
    ```
          
-    Người dùng `dongtv28` có hai thiết bị với IP Ztrust Network là `100.64.17.76` và `100.64.78.145`. Chỉ thiết bị có IP `100.64.17.76` được phép truy cập, thiết bị còn lại thì bị cấm.
+    User `dongtv28` has two devices with Ztrust Network IP addresses `100.64.17.76` and `100.64.78.145`. Only the device with IP `100.64.17.76` is allowed to access; the other device is denied.
    ![img.png](images/device_acl.png)
 
-3. Click `Save Changes` để lưu lại chính sách
-4. Click `Comit Changes`, giao diện hiển thị các dòng chính sách thay đổi, quản trị viên cần điền lý do comit và thực hiện click `Confirm & Submit`
+3. Click `Save Changes` to save the policy.
+4. Click `Commit Changes`. The interface will display the modified policy entries. The administrator must provide a commit reason and then click `Confirm & Submit`.
 ![img.png](images/devices_acl.png)
 
-
-
-Cần click `Enabled` để đảm bảo chính sách được áp dụng (quá trình đợi diễn ra trong khoảng 1 phút)
+   Click `Enabled` to ensure the policy is enforced (the propagation process takes approximately 1 minute).
 ![img_1.png](images/device_Acl4.png)
 
-**Kết quả**
-- Thiết bị 100.64.17.76 của dongtv28 có thể truy cập được dịch vụ
+**Result**
+- Device `100.64.17.76` of user `dongtv28` can access the service.
 ![img_1.png](images/devices_acl33.png)
-- Thiết bị 100.64.78.145 của dongtv28 không thể truy cập được dịch vụ
+- Device `100.64.78.145` of user `dongtv28` cannot access the service.
 
