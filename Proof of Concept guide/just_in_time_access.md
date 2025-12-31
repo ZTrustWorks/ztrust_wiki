@@ -1,18 +1,18 @@
-# Cấp quyền truy cập tài nguyên trong thời gian giới hạn
+#  Time-Bound Access to Resources
 
 
-## 1. Tạo chính sách
+## 1. Policy Creation
 
-Tab `Network Policy` -> ACLs -> Create ACL
+Go to the `Network Policy` tab → ACLs → Create ACL.
 
-1. Cho phép các thiết bị của nhân sự thuộc nhóm data_entry và thiết bị của nhân sự dongtv28 truy cập hệ thống nhập liệu 10.110.84.110 port 3000, 8000, 8005 trong khoảng thời gian hành chính từ 9h - 18h 
+1. Allow devices of users in the `data_entry` group and devices of user `dongtv28` to access the data entry system at 10.110.84.110 on ports 3000, 8000, and 8005 during business hours from 09:00 to 18:00. 
 
    **Sources/Destinations hỗ trợ các kiểu:** `IP/CIDR`, `Group`, `Host`, `User `
-   ```commandline
+   ```
    Name: Allow Data Entry
-   Description: Cho phép nhóm nhân viên nhập liệu truy cập hệ thống 10.110.84.110 port 3000, 8000, 8005 từ 9h - 18h thứ 2 đến thứ 6
+   Description: Allow the data entry staff group to access the system at 10.110.84.110 on ports 3000, 8000, and 8005 from 09:00 to 18:00, Monday to Friday
    Protocol: ALL (TCP, UDP)
-   ACL Effective Time Range: 
+   ACL Effective Time Range: 9h - 18h Mon -> Fri
    Source: User:dongtv28, Group:data_entry
    Destinations: 10.110.84.110:3000, 10.110.84.110:8000, 10.110.84.110:8005
    ```
@@ -20,18 +20,18 @@ Tab `Network Policy` -> ACLs -> Create ACL
 
 
 
-3. Click `Save Changes` để lưu lại chính sách
-4. Click `Comit Changes`, giao diện hiển thị các dòng chính sách thay đổi, quản trị viên cần điền lý do comit và thực hiện click `Confirm & Submit`
+3. Click `Save Changes` to save the policy.
+4. Click `Commit Changes`. The interface will display the modified policy entries. The administrator must provide a commit reason and then click `Confirm & Submit`.
 ![img.png](images/jit_acl2.png)
 
-**Chú ý mặc định các chính sách mới tạo sẽ không tự động enabled**
+**Note: By default, newly created policies are not automatically enabled.**
 
-Cần click `Enabled` để đảm bảo chính sách được áp dụng (quá trình đợi diễn ra trong khoảng 1 phút)
+You must click `Enabled` to ensure the policy is enforced (the propagation process takes approximately 1 minute).
 ![img.png](images/jit_acl4.png)
 
-**Kết quả**
-- Nhân sự dongtv28 và các nhân sự thuộc nhóm data_entry truy cập trong khoảng thời gian được cho phép
+**Result**
+- User `dongtv28` and members of the `data_entry` group can access the system during the permitted time window.
 ![img.png](images/jit_acl77.png)
-- Nhân sự dongtv28 và các nhân sự thuộc nhóm data_entry không thể truy cập trong khoảng thời gian trái phép
+- User `dongtv28` and members of the `data_entry` group cannot access the system outside the authorized time window.
 ![img_1.png](images/jit_acl88.png)
 
