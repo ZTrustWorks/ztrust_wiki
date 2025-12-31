@@ -1,17 +1,17 @@
-# Thiết bị mất compliance → quyền bị thu hồi
-Agent Ztrust kết hợp với các phần mềm tại endpoint để thực hiện kiểm tra điều kiện bảo mật của thiết bị. Hiện tại Ztrust đang cung cấp 9 mẫu `posture rule` miễn phí.
+# Device Loses Compliance → Access Revoked
+The Ztrust Agent integrates with endpoint security software to perform device security posture checks. Currently, Ztrust provides 9 free predefined `posture rule` templates.
 
 
-Ví dụ: Yêu các thiết bị thuộc nhóm SEC khi tham gia vào mạng Ztrust bắt buộc phải cài đặt phần mềm `Velociraptor` và `wazuh-agent`, nếu không cài đặt sẽ thực hiện `Block` khỏi mạng Ztrust. Chi tiết cấu hình như sau:
+Example: Devices belonging to the SEC group are required to have both `Velociraptor` and `wazuh-agent` installed when joining the Ztrust network. If the required software is not installed, the device will be `Blocked` from the Ztrust network. The detailed configuration is shown below:
 
 ![img.png](images/posture_checks.png)
 
-Người dùng `hoandm2` thuộc nhóm SEC đang truy cập mạng Ztrust nhưng có dấu hiệu tắt phần mềm `Velociraptor` và `wazuh-agent`. Ngay lập tức bị đẩy ra khỏi mạng Ztrust.
+User `hoandm2`, a member of the SEC group, is connected to the Ztrust network but shows signs of disabling the `Velociraptor` and `wazuh-agent` software. The device is immediately disconnected from the Ztrust network.
 
-Trên máy `hoandm2` sẽ hiển thị thông tin sau:
+On the `hoandm2` endpoint, the following message is displayed:
 
 ![img.png](images/continuous_posture_check.png)
 
-Trên kênh cảnh báo của quản trị viên cũng hiển thị cảnh bảo:
+An alert is also displayed in the administrator’s alert channel:
 
 ![img.png](images/c_posture_check.png)

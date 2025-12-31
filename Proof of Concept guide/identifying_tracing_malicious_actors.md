@@ -1,4 +1,6 @@
-# Truy vết, khoanh vùng các đối tượng nguy hiểm
+# Tracing and Isolating High-Risk Entities
 
-Mỗi thiết bị khi truy cập vào mạng Ztrust sẽ được cấp phát một IP duy nhất cho đến khi thiết bị bị xóa hoàn toàn khỏi mạng. Nghĩa là dù thiết bị có kết nối hoặc ngắt kết nối vào mạng Ztrust vô số lần thì IP Ztrust của thiết bị vẫn giữ nguyên. Trong trường hợp thiết bị cố gắng thay đổi IP, thiết bị sẽ bị ngắt kết nối khỏi mạng Ztrust và không thể truy cập tài nguyên.
+Each device that connects to the Ztrust network is assigned a unique IP address that remains fixed until the device is completely removed from the network. This means that even if a device connects to or disconnects from the Ztrust network multiple times, its Ztrust IP address remains unchanged.
+
+If a device attempts to alter its assigned IP address, it will be immediately disconnected from the Ztrust network and will no longer be able to access any resources.
 
