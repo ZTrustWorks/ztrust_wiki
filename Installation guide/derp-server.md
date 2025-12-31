@@ -23,7 +23,7 @@ Welcome! This guide will walk you through building and running your very own **D
 Example:
 
 ```
-ztrust-relay-02.ghtklab.com 157.66.96.198
+ztrust-relay-02.nextzero.vn 157.66.96.198
 ```
 
 ------
@@ -119,10 +119,10 @@ After=network.target
 
 [Service]
 ExecStart=/home/dongtv28/go/bin/derper \
-  --hostname ztrust-relay-02.ghtklab.com \
+  --hostname ztrust-relay-02.nextzero.vn \
   --certmode manual \
   --certdir /home/dongtv28/.cache/tailscale/derper-certs \ # Directory containing certs
-  -mesh-with ztrust-relay-01.ghtklab.com,ztrust-relay-03.ghtklab.com \ # Other custom DERPs in the org to mesh with
+  -mesh-with ztrust-relay-01.nextzero.vn,ztrust-relay-03.nextzero.vn \ # Other custom DERPs in the org to mesh with
   -mesh-psk-file /var/lib/derper/mesh.key # Private key for encryption between org DERPs
 Restart=always
 User=root
@@ -155,7 +155,7 @@ Since we're using `--certmode manual`, you'll need to provide your own TLS certi
 
 ```
 sudo apt install certbot
-sudo certbot certonly --standalone -d ztrust-relay-02.ghtklab.com
+sudo certbot certonly --standalone -d ztrust-relay-02.nextzero.vn
 ```
 
 Copy the certificates to your `certdir`:
@@ -166,8 +166,8 @@ Copy the certificates to your `certdir`:
 
 Ensure they are named as follows:
 
-- `ztrust-relay-02.ghtklab.com.crt`
-- `ztrust-relay-02.ghtklab.com.key`
+- `ztrust-relay-02.nextzero.vn.crt`
+- `ztrust-relay-02.nextzero.vn.key`
 
 ------
 
@@ -194,7 +194,7 @@ sudo ss -ulpn | grep 3478
 Open your browser and visit:
 
 ```
-https://ztrust-relay-02.ghtklab.com
+https://ztrust-relay-02.nextzero.vn
 ```
 
 If you see "DERP server OK", you're good to go!
@@ -212,11 +212,11 @@ regions:
   999:
     regionid: 999
     regioncode: "zlab"
-    regionname: "GHTK ZLab"
+    regionname: "NextZero ZLab"
     nodes:
       - name: 999z
         regionid: 999
-        hostname: ztrust-relay-02.ghtklab.com
+        hostname: ztrust-relay-02.nextzero.vn
         ipv4: 157.66.96.198
         ipv6: 2001:db8::1
         stunport: 0

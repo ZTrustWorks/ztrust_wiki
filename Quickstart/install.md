@@ -83,12 +83,12 @@ TS_HOSTNAME=zerotrust-be
 
 # Control API Address (Bind Address) (Controller running on this address)
 ENDPOINT_CONTROLLER_ADDR=0.0.0.0:8090
-# Public URL for Controller (e.g., https://ztcontroller.ghtklab.com)
+# Public URL for Controller (e.g., https://ztcontroller.nextzero.vn)
 # Ensure your public URL is accessible from the internet (for agent to connect to controller)
-ENDPOINT_CONTROLLER_URL=https://ztcontroller.ghtklab.com
-# Frontend URL (e.g., https://ztrust.ghtklab.com)
+ENDPOINT_CONTROLLER_URL=https://ztcontroller.nextzero.vn
+# Frontend URL (e.g., https://ztrust.nextzero.vn)
 # The portal domain for admin to access the portal
-ENDPOINT_CONTROLLER_FE_URL=https://ztrust.ghtklab.com
+ENDPOINT_CONTROLLER_FE_URL=https://ztrust.nextzero.vn
 
 # gRPC Address (Port for gRPC server)
 GRPC_ADDR=:50051
@@ -150,7 +150,7 @@ TS_NET_DIR=/app/.tsnet-data
 GOOGLE_CLIENT_ID=xxx
 # Google Client Secret
 GOOGLE_CLIENT_SECRET=xxx
-# Google Redirect URL, e.g. https://ztcontroller.ghtklab.com/public/api/v1/auth/google/callback
+# Google Redirect URL, e.g. https://ztcontroller.nextzero.vn/public/api/v1/auth/google/callback
 # You must add this callback URL in Google API Console
 # Format: https://<your-controller-domain>/public/api/v1/auth/google/callback
 GOOGLE_REDIRECT_URL=
@@ -170,8 +170,8 @@ JWT_KEK=1ceea52ff71b878c458cc0632f9dbc9506aaca822090922bfe63c2d56277a8e4
 # Super Admin Credentials
 # Account name of super admin default: superadmin
 SUPER_ADMIN_USERNAME=superadmin 
-# Email of super admin default: superadmin@ghtk.co
-SUPER_ADMIN_EMAIL=superadmin@ghtk.co 
+# Email of super admin default: superadmin@nextzero.vn
+SUPER_ADMIN_EMAIL=superadmin@nextzero.vn
 # Password of super admin default: changeme!
 SUPER_ADMIN_PASSWORD=changeme! 
 
@@ -212,15 +212,15 @@ POSTURE_REPORT_CHAN_SIZE=16384
 POSTURE_VIO_CHAN_SIZE=8192
 POSTURE_EVAL_WORKERS=16
 
-# Custom Protocol Agent Default: ztna-ghtk-agent://auth/callback
+# Custom Protocol Agent Default:
 CUSTOM_PROTOCOL_AGENT=ztna-ghtk-agent://auth/callback 
 
 # Cert for GRPC (Required for secure gRPC communication)
 # Contact admin to get the proper certs.
 # Backend TLS certificate (issued by ZTrust Root CA)
-CERT_FILE_PATH=/etc/ztrust/certs/ztcontroller.ghtklab.com.crt
+CERT_FILE_PATH=/etc/ztrust/certs/ztcontroller.nextzero.vn.crt
 # Private key corresponding to the certificate above
-KEY_CERT_FILE_PATH=/etc/ztrust/certs/ztcontrollerghtklab.com.key
+KEY_CERT_FILE_PATH=/etc/ztrust/certs/ztcontroller.nextzero.vn.key
 
 # ==============================================================================
 # MONITORING

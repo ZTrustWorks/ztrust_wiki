@@ -39,9 +39,10 @@ cp backend/config/example/headscale/config.yaml backend/config/headscale/config.
 
 # Create extra-records.json file
 touch backend/config/headscale/extra-records.json
-
 ```
+
 ### Server Configuration
+
 Config your public domain in `server_url` in `backend/config/headscale/config.yaml`
 
 `listen_addr` should be `0.0.0.0:8080`
@@ -57,7 +58,7 @@ if you have your own DERP server, config it in `backend/config/headscale/config.
 
 For setup DERP server, please follow [this](https://github.com/ZTrustWorks/ztrust_wiki/blob/main/Installation%20guide/derp-server.md) guide
 
-DERP can be configured via `urls` (eg. https://derp.ghtklab.com) or `paths` (use local file `derp-example.yaml`)
+DERP can be configured via `urls` (eg. https://derp.nextzero.vn) or `paths` (use local file `derp-example.yaml`)
 
 E.g: `derp-example.yaml`
 
@@ -82,7 +83,6 @@ regions:
 <div>
 <img src="images/derp_config.png">
 </div>
-
 
 
 ### Database Configuration
@@ -112,10 +112,10 @@ Config your public domain with valid SSL certificate in `ENDPOINT_CONTROLLER_URL
 
 Firewall should allow port 80/443 HTTP, 50051 TCP/GRPC
 
-E.g: `ENDPOINT_CONTROLLER_URL=https://ztcontroller.ghtklab.com`
+E.g: `ENDPOINT_CONTROLLER_URL=https://ztcontroller.nextzero.vn`
 
 - `ENDPOINT_CONTROLLER_ADDR` should be `0.0.0.0:8090`
-- `ENDPOINT_CONTROLLER_FE_URL` is the internal domain for admin to access the portal, e.g `https://ztrust.ghtklab.com`
+- `ENDPOINT_CONTROLLER_FE_URL` is the internal domain for admin to access the portal, e.g `https://ztrust.nextzero.vn`
 - `GRPC_ADDR` should be `:50051` for gRPC connection from agent to controller
 - `GIN_METRICS_ADDR` should be `127.0.0.1:9099` for monitoring metrics
 
@@ -296,10 +296,10 @@ sudo nano frontend/config/env-config.json
 
 Minimum required environment variables:
 
-- `NEXT_PUBLIC_API_BASE_URL`: Replace with your backend URL with http protocol (e.g: https://internal-ztcontroller.ghtklab.com or http://10.110.86.17:8090)
-- `NEXT_PUBLIC_WS_BASE_URL`: Replace with your backend URL with ws protocol (e.g: wss://internal-ztcontroller.ghtklab.com or ws://10.110.86.17:8090)
-- `NEXT_PUBLIC_DOMAIN_APP`: Replace with your domain portal ZTrust (e.g. https://ztrust.ghtklab.com or http://10.110.86.17:33000)
-- `NEXT_PUBLIC_EMAIL_ORG_DOMAIN`: Replace with your organization domain (e.g. @ghtk.co)
+- `NEXT_PUBLIC_API_BASE_URL`: Replace with your backend URL with http protocol (e.g: https://internal-ztcontroller.nextzero.vn or http://10.110.86.17:8090)
+- `NEXT_PUBLIC_WS_BASE_URL`: Replace with your backend URL with ws protocol (e.g: wss://internal-ztcontroller.nextzero.vn or ws://10.110.86.17:8090)
+- `NEXT_PUBLIC_DOMAIN_APP`: Replace with your domain portal ZTrust (e.g. https://ztrust.nextzero.vn or http://10.110.86.17:33000)
+- `NEXT_PUBLIC_EMAIL_ORG_DOMAIN`: Replace with your organization domain (e.g. @nextzero.vn)
 
 Example:
 ```json
@@ -309,7 +309,7 @@ Example:
   "NEXT_PUBLIC_LOCATION": "",
   "NEXT_PUBLIC_VERSION_APP": "1.0.0",
   "NEXT_PUBLIC_DOMAIN_APP": "http://10.110.86.17:33000",
-  "NEXT_PUBLIC_EMAIL_ORG_DOMAIN": "@ghtk.co"
+  "NEXT_PUBLIC_EMAIL_ORG_DOMAIN": "@nextzero.vn"
 }
 ```
 
