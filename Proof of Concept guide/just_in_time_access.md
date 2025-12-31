@@ -24,8 +24,7 @@ Go to the `Network Policy` tab → ACLs → Create ACL.
 4. Click `Commit Changes`. The interface will display the modified policy entries. The administrator must provide a commit reason and then click `Confirm & Submit`.
 ![img.png](images/jit_acl2.png)
 
-**Note: By default, newly created policies are not automatically enabled.**
-
+   **Note: By default, newly created policies are not automatically enabled.**
    You must click `Enabled` to ensure the policy is enforced (the propagation process takes approximately 1 minute).
 ![img.png](images/jit_acl4.png)
 
