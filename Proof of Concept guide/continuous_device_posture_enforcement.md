@@ -10,8 +10,8 @@ Người dùng `hoandm2` thuộc nhóm SEC đang truy cập mạng Ztrust nhưng
 
 Trên máy `hoandm2` sẽ hiển thị thông tin sau:
 
-![img.png](continuous_posture_check.png)
+![img.png](images/continuous_posture_check.png)
 
 Trên kênh cảnh báo của quản trị viên cũng hiển thị cảnh bảo:
 
-![img.png](c_posture_check.png)
+![img.png](images/c_posture_check.png)

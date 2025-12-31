@@ -9,8 +9,8 @@ Example: Devices belonging to the SEC group are required to have both `Velocirap
 
 When a user in the SEC group attempts to access the network without having all required software installed, access is denied and the following notification is displayed:
 
-![img.png](posture_check2.png)
+![img.png](images/posture_check2.png)
 
 At the same time, an alert is sent to the administrator:
 
-![img.png](alert_porture.png)
+![img.png](images/alert_porture.png)
