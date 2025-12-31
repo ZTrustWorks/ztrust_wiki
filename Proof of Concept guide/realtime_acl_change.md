@@ -24,6 +24,8 @@ Go to the `Network Policy` tab → ACLs → Select the ACL you want to modify.
 
 4. Click `Commit Changes`. The interface will display the modified policy entries. The administrator must provide a commit reason and then click `Confirm & Submit`.
     ![img.png](images/edit_acl4.png)
+
+
 **Result**
 - User dongtv28 **before** the administrator revoked access:
 ![img.png](images/output_acl.png)
