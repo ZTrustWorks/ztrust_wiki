@@ -2,73 +2,83 @@
 
 ![img.png](images/node-gateway-topology.png)
 
-## Nhu cầu
-- Kiểm soát quyền truy cập của từng thiết bị nhân viên vào các vùng mạng nội bộ.
-- Một thiết bị có thể truy cập vào một hoặc nhiều subnet.
-- Mỗi subnet chỉ cần một thiết bị chạy Ztrust Agent đóng vai trò gateway, không yêu cầu cài đặt trên toàn bộ server.
-- Triển khai gateway để đăng ký subnet vào Ztrust Network
+## Requirements
+- Control access permissions of each employee device to internal network segments.
+- A single device may be allowed to access one or multiple subnets.
+- Each subnet requires only one device running the Ztrust Agent to act as a gateway; installation on all servers is not required.
+- Deploy a gateway to register subnets into the Ztrust Network.
 
-**Ví dụ triển khai**
+**Deployment Example**
 
-| Thiết bị           | Vai trò          | IP Ztrust Network | Internal Subnet                  |
-| ------------------ | ---------------- |-------------------|----------------------------------|
-| **Ztrust Agent 1** | Client nhân viên | 100.x.y.55        | N/A                              |
-| **Ztrust Agent 2** | Client nhân viên | 100.x.y.66        | N/A                              |
-| **Ztrust Agent 3** | Subnet Router    | 100.x.y.111       | 10.10.x.0/24 (Marketing Subnet)  |
-| **Ztrust Agent 4** | Subnet Router    | 100.x.y.222       | 10.11.x.0/24 (Accountant Subnet) |
+| Device             | Role             | Ztrust Network IP | Internal Subnet                   |
+| ------------------ | ---------------- | ------------------|-----------------------------------|
+| **Ztrust Agent 1** | Employee Client  | 100.x.y.55        | N/A                               |
+| **Ztrust Agent 2** | Employee Client  | 100.x.y.66        | N/A                               |
+| **Ztrust Agent 3** | Subnet Router    | 100.x.y.111       | 10.10.x.0/24 (Marketing Subnet)   |
+| **Ztrust Agent 4** | Subnet Router    | 100.x.y.222       | 10.11.x.0/24 (Accounting Subnet)  |
+
+- Install the Ztrust Agent on four devices, including:
+  - Ztrust Agent 1 and Ztrust Agent 2 are employee endpoint devices.
+  - Ztrust Agent 3 is a device (workstation or server) located in the Marketing Subnet.
+  - Ztrust Agent 4 is a device (workstation or server) located in the Accounting Subnet.
+
+- Ztrust Agent 1 is granted access to resources in both the Accounting Subnet and the Marketing Subnet.
+- Ztrust Agent 2 is granted access only to resources in the Marketing Subnet.
+
+For the Ztrust Agent version designed for gateway servers, please contact the product team to download and install it.
 
 
-- Cài đặt Ztrust Agent trên 4 thiết bị, trong đó: 
-  - Ztrust Agent 1, Ztrust Agent 2 là thiết bị của nhân viên. 
-  - Ztrust Agent 3 là thiết bị (có thể là máy tính hoặc máy chủ) thuộc Marketing Subnet
-  - Ztrust Agent 4 là thiết bị (có thể là máy tính hoặc máy chủ) thuộc Accountant Subnet
-- Ztrust Agent 1 có quyền truy cập vào các tài nguyên của Accountant Subnet và Marketing Subnet, Ztrust Agent 3 là thiết bị (có thể là máy tính hoặc máy chủ) thuộc Marketing Subnet
-- Ztrust Agent 2 chỉ có quyền truy cập vào các tài nguyên của Marketing Subnet
+## Configuration Steps
 
-Phiên bản Ztrust Agent dành cho gateway server liên hệ với team sản phẩm để tải về và cài đặt 
+### 1. The administrator creates a dedicated account for each gateway node
+- When creating a gateway node account, ensure that `Type = Server` is selected and the maximum number of devices is limited to 1 or 2 (in case a load balancer is used) to support non-repudiation.
+- Account names should follow a consistent naming convention to simplify management and troubleshooting.  
+  Example: `{subnetname}_{hostname}_gateway_01` → `marketing_haproxy_gateway_01`, `accountant_haproxy_gateway_01`
 
-## Các bước cấu hình
-### 1. Quản trị viên tạo tài khoản riêng phụ trách từng node gateway
-- Chú ý khi tạo tài khoản node gateway cần chọn `Type = Server` và số lượng thiết bị tối đa là 1 hoặc 2 (trong trường hợp sử dụng LB) để đảm bảo việc `Chống chối bỏ`.
-- Tên của tài khoản nên có một cấu trúc cố định để dễ quản lý và rà soát khi có lỗi. VD: `{subnetname}_{hostname}_gateway_01` => marketing_haproxy_gateway_01, accountant_haproxy_gateway_01
 ![img.png](images/add-user-node-gateway.png)
-### 2. Quản trị viên tạo Auth Key cho từng tài khoản phụ trách node gateway
-- Khi tạo Auth Key cho tài khoản cần xác định:
-  - **Expire**: Thời gian hết hạn của key
-  - **Reusable**: Cho phép key có thể được dùng lại trong phiên đăng nhập khác của node (trong trường hợp cần đăng nhập lại hoặc đăng nhập cho LB)
-  - **Ephemeral** (Không khuyến nghị bật cho node gateway): Xác định tạo khóa cho node tạm thời, ở trường hợp này key sẽ tự hết hạn hoặc bị xóa khi node ngắt kết nối
+### 2. The administrator creates an Auth Key for each gateway node account
+- When creating an Auth Key for a gateway node account, the following parameters must be defined:
+  - **Expire**: The expiration time of the key.
+  - **Reusable**: Allows the key to be reused for another login session of the node (for example, when re-authentication is required or when logging in a load balancer).
+  - **Ephemeral** (not recommended for gateway nodes): Specifies whether the key is issued for a temporary node. In this case, the key will automatically expire or be revoked when the node disconnects.
 
 ![img.png](images/create-auth_key.png)
-### 3. Tại từng Note Gateway, thực hiện đăng nhập các tài khoản vừa tạo và đăng ký subnet router cho Ztrust Network
-**Đảm bảo các node gateway đều đang cho phép ip forward (Bắt buộc).**
+### 3. On each Gateway Node, log in using the newly created accounts and register the subnet router with the Ztrust Network
+**Ensure that IP forwarding is enabled on all gateway nodes (mandatory).**
 ```bash
 echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
 echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
 sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 
 ```
-**Trên Ztrust Agent 3 (Marketing Subnet)**
+**On Ztrust Agent 3 (Marketing Subnet)**
 ```bash
 sudo ztrustcli login --server=https://ztcontroller.{org_domain} --auth-key={marketing_haproxy_gateway_01 auth key} --advertise-routes="10.10.x.0/24"
 ```
-**Trên Ztrust Agent 4 (Accountant Subnet)**
+**On Ztrust Agent 4 (Accountant Subnet)**
 ```bash
 sudo ztrustcli login --server=https://ztcontroller.{org_domain} --auth-key={accountant_haproxy_gateway_01 auth key} --advertise-routes="10.11.x.0/24"
 ```
 
-### 4. Tại Ztrust Controller, thực hiện phê duyệt cho phép các subnet router vận hành cho mạng
+### 4. On the Ztrust Controller, approve and authorize the subnet routers to operate within the network
+
 ![img.png](images/accept_node.png)
 ![img.png](images/accept_node_2.png)
 
-**Đợi ít phút để thông tin được cập nhật cho toàn mạng, lúc này trạng thái subnet router sẽ được chuyển sang là `Serving`**
+**Wait a few minutes for the configuration to propagate across the entire network; the subnet router status will then change to `Serving`.**
 ![img.png](images/accept_node3.png)
 
-### 5. Tại Ztrust Controller, thực hiện cấu hình chính sách cho phép truy cập
-Thêm chính sách chỉ cho phép các nhân viên marketing được truy cập các nghiệp vụ của marketing trên dải 10.10.x.0/24 và port là 80, 443. Cấu hình chính  sách như sau:
-- Quản lý và tạo chính sách tại màn `Network Policy`
+### 5. On the Ztrust Controller, configure access control policies
+
+Add a policy that allows only marketing employees to access marketing-related services within the 10.10.x.0/24 subnet on ports 80 and 443. The policy configuration is as follows:
+
+- Manage and create policies from the `Network Policy` screen.
 ![img.png](images/create_policy.png)
-- Thêm thông tin chi tiết cho chính sách:
+
+- Provide detailed policy information.
 ![img.png](images/create_policy2.png)
-- Thực hiện chọn `Enabled` (mặc định các chính sách mới tạo sẽ không được bật tự động), sau đó chọn `Commit changes` để xác nhận việc cập nhật chính sách
+
+- Select `Enabled` (by default, newly created policies are not enabled automatically), then select `Commit changes` to confirm and apply the policy updates.
 ![img.png](images/create_policy3.png)
+
 
