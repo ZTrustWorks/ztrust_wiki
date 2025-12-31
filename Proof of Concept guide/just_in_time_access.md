@@ -26,7 +26,7 @@ Go to the `Network Policy` tab → ACLs → Create ACL.
 
 **Note: By default, newly created policies are not automatically enabled.**
 
-You must click `Enabled` to ensure the policy is enforced (the propagation process takes approximately 1 minute).
+   You must click `Enabled` to ensure the policy is enforced (the propagation process takes approximately 1 minute).
 ![img.png](images/jit_acl4.png)
 
 **Result**
