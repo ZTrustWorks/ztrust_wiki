@@ -1,30 +1,30 @@
-# Thay đổi ACL có hiệu lực tức thì
+# Instant ACL Changes Enforcement
 
-## 1. Tạo chính sách
+## 1. Policy Update
 
-Tab `Network Policy` -> ACLs -> Chọn ACL muốn sửa
+Go to the `Network Policy` tab → ACLs → Select the ACL you want to modify.
 
-1. Nội dung ACL muốn sửa như sau:
+1. The ACL configuration to be edited is as follows:
 ![img.png](images/edit_acl.png)
-2. Sửa quyền nhân sự dongtv28 không còn được truy cập 10.110.84.110 port 3000, 8000, 8005
+2.  Modify the permissions so that user dongtv28 is no longer allowed to access 10.110.84.110 on ports 3000, 8000 and 8005.
    ```commandline
    Name: Allow Data Entry
-   Description: Cho phép nhóm nhân viên nhập liệu truy cập hệ thống 10.110.84.110 port 3000, 8000, 8005
+   Description: Allow the data entry staff group to access the system at 10.110.84.110 on ports 3000, 8000 and 8005
    Protocol: ALL (TCP, UDP)
-   ACL Effective Time Range: None (Do không có yêu cầu về lịch truy cập)
+   ACL Effective Time Range: None (no access schedule is required)
    Source: Group:data_entry (loại bỏ User:dongtv28)
    Destinations: 10.110.84.110:3000, 10.110.84.110:8000, 10.110.84.110:8005
    ```
-   **Sources/Destinations hỗ trợ các kiểu:** `IP/CIDR`, `Group`, `Host`, `User `
+   **Supported Source/Destination types:** `IP/CIDR`, `Group`, `Host`, `User `
     ![img.png](images/edit_acl2.png)
-3. Click `Save Changes` để lưu lại chính sách. Thông tin chính sách sau khi loại bỏ người dùng `dongtv28`
+3. Click Save Changes to persist the policy. The policy state after removing user dongtv28:
     ![img.png](images/edit_acl3.png)
 
-Click `Comit Changes`, giao diện hiển thị các dòng chính sách thay đổi, quản trị viên cần điền lý do comit và thực hiện click `Confirm & Submit`
+Click `Commit Changes`. The interface will display the modified policy entries. The administrator must provide a commit reason and then click `Confirm & Submit`.
 ![img.png](images/edit_acl4.png)
 
-**Kết quả**
-- Nhân sự dongtv28 **trước khi** bị quản trị viên xóa quyền truy cập
+**Result**
+- User dongtv28 **before** the administrator revoked access:
 ![img.png](images/output_acl.png)
-- Nhân sự dongtv28 **sau khi** bị quản trị viên xóa quyền truy cập. Ngay lập tức không thể truy cập dịch vụ được nữa:
+- User dongtv28 **after** the administrator revoked access. Access to the service is immediately blocked:
 ![img.png](images/edit_acl5.png)

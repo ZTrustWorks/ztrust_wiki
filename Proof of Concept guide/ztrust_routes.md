@@ -1,26 +1,26 @@
-# Subnet Router – Truy cập mạng on-prem theo Zero Trust
+# Subnet Router – Zero Trust Access to On-Prem Networks
 
-Cách thức mạng Ztrust đảm bảo tính linh hoạt, dễ mở rộng trong khi đảm bảo tính an toàn bảo mật khi triển khai cùng với mạng legacy / on-prem / cloud VPC. Tham khảo mô hình ví dụ tại [routes](../Operations/routes.md)  
+Ztrust networking ensures flexibility and scalability while maintaining strong security when integrated with legacy, on-premises, or cloud VPC environments. Refer to the sample architecture at [routes](../Operations/routes.md).  
 
-Tab `Router Gateway` -> Chọn Action với từng node gateway cần phê duyệt
+Go to the `Router Gateway` tab → Select an Action for each gateway node that requires subnet route approval.
 
-1. Chọn node gateway đang chờ approve subnet route, sau đó nhấn nút `Appover`
+1. Select the gateway node that is pending subnet route approval, then click the `Approver` button.
 ![img.png](images/select_gateway.png)
-2. Chọn subnet route muốn phê duyệt, sau đó nhấn nút `Approve`
+2. Select the subnet route to be approved, then click the `Approve` button.
 ![img.png](images/approve_routes.png)
-3. Đợi ít phút để cập nhật thông tin cho toàn mạng. Tại thời điểm hiện tại, các lưu lượng khi đến subnet 10.110.24.141/32 sẽ được node-gateway phụ trách chuyển tiếp.
-4. Kết quả người dùng có thể truy cập được các vùng mạng private trên on-prem của tổ chức.
+3. Wait a few minutes for the configuration to be propagated across the entire network. At this point, traffic destined for subnet 10.110.24.141/32 will be forwarded by the responsible node-gateway.
+4. As a result, users can access the organization’s private on-prem network segments.
 
-- Trước khi có triển khai subnet route
+- Before subnet routing is enabled
   
   ![img.png](images/subnet_route3.png)
 
-- Sau khi có triển khai subnet route
+- After subnet routing is enabled
   
   ![img.png](images/subnet_route.png)
 
-**Chú ý:**
-- Subnet route chỉ hoạt động khi đạt đồng thời 2 điều kiện sau: Có node gateway khai báo subnet route và có sự cho phép của ztrust controller.
-- Chỉ cần node-gateway tham gia vào mạng ztrust, các subnet đằng sau node-gateway không cần kết nối ztrust.
-- Trong trường hợp khai báo trùng subnet route, ztrust sẽ ưu tiên dùng node gateway khai báo đầu tiên.
-- Ztrust ưu tiên sử dụng node gateway có khai báo subnet nhỏ hơn. Ví dụ: Node gateway A khai báo route cho subnet 10.10.10.0/16, node gateway B khai báo route cho subnet 10.10.10.0/24 => Ưu tiên B.
+**Notes:**
+- Subnet routing is effective only when both conditions are met: a gateway node advertises the subnet route, and the route is explicitly approved by the Ztrust controller.
+- Only the node-gateway needs to join the Ztrust network; the subnets behind the node-gateway do not require direct Ztrust connectivity.
+- In case of duplicate subnet route advertisements, Ztrust prioritizes the gateway node that registered the route first.
+- Ztrust prefers gateway nodes advertising more specific (smaller) subnets. For example: Gateway A advertises subnet 10.110.24.141/16, while Gateway B advertises subnet 10.110.24.141/24 → Gateway B is preferred.
