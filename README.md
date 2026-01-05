@@ -33,8 +33,9 @@ Please contact to `info@nextzero.vn`.
 | Proof of Concept | [Proof of Concept guide](Proof%20of%20Concept%20guide/README.md) |
 
 ## 📚 Our Community
-| Name             | Reference                                                        |
-|------------------|------------------------------------------------------------------|
-| Github           | https://github.com/ZTrustWorks                                   |
-| Telegram         | https://t.me/+zGUanvb2oPQwM2I9 |
-| Facebook         | https://www.facebook.com/share/g/17S8eQrPFv/|
+| Name            | Reference                                                        |
+|-----------------|------------------------------------------------------------------|
+| Github          | https://github.com/ZTrustWorks                                   |
+| Telegram        | https://t.me/+zGUanvb2oPQwM2I9 |
+| Facebook        | https://www.facebook.com/share/g/17S8eQrPFv/|
+| Twitter (x.com) | https://x.com/NextZeroGlobal|
