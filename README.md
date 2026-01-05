@@ -17,7 +17,10 @@ BeyondCorp is Google's implementation of the zero trust model. It builds upon a 
 | Demo 2           | [ztrust-demo2.nextzero.vn](https://ztrust-demo2.nextzero.vn)         |
 | Demo 3           | [ztrust-demo3.nextzero.vn](https://ztrust-demo3.nextzero.vn)         |
 
-Please contact us at `info@nextzero.vn` to set up your account and conduct a PoC
+Supported SSO identity providers: <b>Google, Okta, Github</b>.
+
+In addition to the natively supported identity providers, ZTrust also lets you authenticate with custom OpenID Connect (OIDC) providers.
+Please contact to `info@nextzero.vn`.
 
 ## 📚 ZTrust Documentation
 
