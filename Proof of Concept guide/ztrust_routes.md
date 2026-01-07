@@ -1,5 +1,5 @@
 # Subnet Router – Zero Trust Access to On-Prem Networks
-
+![img.png](images/Subnet_route.png)
 Ztrust networking ensures flexibility and scalability while maintaining strong security when integrated with legacy, on-premises, or cloud VPC environments. Refer to the sample architecture at [routes](../Operations/routes.md).  
 
 Go to the `Router Gateway` tab → Select an Action for each gateway node that requires subnet route approval.
