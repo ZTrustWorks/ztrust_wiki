@@ -10,4 +10,4 @@ Go to the `Employees` tab →  Select the employee you want to modify.
 1. Users located in Vietnam are allowed to successfully access the ZTrust network.
 ![img.png](images/geoipbasedacl4.png)
 2. Users located outside Vietnam are denied access to the ZTrust network.
-![img.png](images/geoipbasedacl3.png)
+![img_3.png](images/geoipbasedacl6.png)
