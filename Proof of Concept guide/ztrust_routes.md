@@ -17,7 +17,7 @@ Go to the `Router Gateway` tab → Select an Action for each gateway node that r
 
 - After subnet routing is enabled
   
-  ![img.png](images/subnet_route.png)
+  ![img_3.png](images/subnetroutes33.png)
 
 **Notes:**
 - Subnet routing is effective only when both conditions are met: a gateway node advertises the subnet route, and the route is explicitly approved by the Ztrust controller.
