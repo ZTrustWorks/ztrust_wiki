@@ -274,6 +274,13 @@ KEY_CERT_FILE_PATH=/etc/ztrust/certs/<your-controller-domain>.key
 
 After updating the environment variables, restart the Controller service for changes to take effect.
 
+### Config Active code for license
+
+```
+# Code for active license online
+ZTRUST_LICENSE_ACTIVATION_CODE=
+```
+
 ### Monitoring Configuration
 
 You can monitor metrics of `mongo`, `postgres`, `redis`, `headscale` and `ZTrust BE` via `grafana` with `prometheus`
