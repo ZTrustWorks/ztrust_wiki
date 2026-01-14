@@ -53,7 +53,8 @@ To ensure the system runs correctly, update these in `.env`:
 1. **`HOST_IP`**: Your server's IP address.
 2. **Database**: `MONGO_URI`, `POSTGRES_URL`, `REDIS_SENTINEL_ADDRS`.
 3. **Passwords**: `SUPER_ADMIN_PASSWORD`, `MONGO_ROOT_PASSWORD`, `POSTGRES_PASSWORD`, `REDIS_PASSWORD`.
-4. **`JWT_KEK`**: A random 32-byte hex string.
+4. **`ZTRUST_LICENSE_ACTIVATION_CODE`**: A code for active license.
+   
 
 <details>
 <summary><strong>Environment Variables Reference</strong></summary>
