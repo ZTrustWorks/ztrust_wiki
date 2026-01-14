@@ -275,7 +275,7 @@ KEY_CERT_FILE_PATH=/etc/ztrust/certs/<your-controller-domain>.key
 After updating the environment variables, restart the Controller service for changes to take effect.
 
 ### Config Active code for license
-
+A code for active license. Get active code [here](https://nextzero.vn).
 ```
 # Code for active license online
 ZTRUST_LICENSE_ACTIVATION_CODE=
