@@ -213,7 +213,7 @@ To enable secure gRPC/TLS communication between ZTrust Agent and ZTrust Controll
 
 **Step 1: Contact ZTrust Admin**
 
-Please contact ZTrust Admin to request a server certificate for your organization.
+Please contact [ZTrust Admin](https://web.telegram.org/a/#-1003135276877) to request a server certificate for your organization.
 You will receive the following files:
 
 - Server certificate
