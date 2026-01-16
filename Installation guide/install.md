@@ -14,10 +14,7 @@
 
 ## 2. Download
 
-```bash
-
-git clone https://github.com/ZTrustWorks/ztrust_deploy.git
-```
+Dowload ZTrust Controller [here](https://nextzero.vn/download)
 
 ## 3. Configuration
 
