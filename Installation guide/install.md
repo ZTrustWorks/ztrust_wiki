@@ -14,7 +14,7 @@
 
 ## 2. Download
 
-Dowload ZTrust Controller [here](https://nextzero.vn/download)
+Dowload ZTrust Controller [here](https://nextzero.vn/download) (In tab **Server - Community Edition**)
 
 ## 3. Configuration
 
