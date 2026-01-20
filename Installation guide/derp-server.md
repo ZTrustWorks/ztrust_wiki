@@ -76,7 +76,7 @@ Create directories for certificates and the mesh key:
 
 ```
 sudo mkdir -p /var/lib/derper
-sudo mkdir -p /home/dongtv28/.cache/tailscale/derper-certs
+sudo mkdir -p /home/dongtv/.cache/tailscale/derper-certs
 sudo chown -R root:root /var/lib/derper
 ```
 
@@ -118,10 +118,10 @@ Description=Custom DERP Server
 After=network.target
 
 [Service]
-ExecStart=/home/dongtv28/go/bin/derper \
+ExecStart=/home/dongtv/go/bin/derper \
   --hostname ztrust-relay-02.nextzero.vn \
   --certmode manual \
-  --certdir /home/dongtv28/.cache/tailscale/derper-certs \ # Directory containing certs
+  --certdir /home/dongtv/.cache/tailscale/derper-certs \ # Directory containing certs
   -mesh-with ztrust-relay-01.nextzero.vn,ztrust-relay-03.nextzero.vn \ # Other custom DERPs in the org to mesh with
   -mesh-psk-file /var/lib/derper/mesh.key # Private key for encryption between org DERPs
 Restart=always
@@ -161,7 +161,7 @@ sudo certbot certonly --standalone -d ztrust-relay-02.nextzero.vn
 Copy the certificates to your `certdir`:
 
 ```
-/home/dongtv28/.cache/tailscale/derper-certs/
+/home/dongtv/.cache/tailscale/derper-certs/
 ```
 
 Ensure they are named as follows:
