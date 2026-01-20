@@ -76,7 +76,7 @@ Create directories for certificates and the mesh key:
 
 ```
 sudo mkdir -p /var/lib/derper
-sudo mkdir -p /home/dongtv28/.cache/tailscale/derper-certs
+sudo mkdir -p /home/dongtv/.cache/tailscale/derper-certs
 sudo chown -R root:root /var/lib/derper
 ```
 
@@ -118,10 +118,10 @@ Description=Custom DERP Server
 After=network.target
 
 [Service]
-ExecStart=/home/dongtv28/go/bin/derper \
+ExecStart=/home/dongtv/go/bin/derper \
   --hostname ztrust-relay-02.nextzero.vn \
   --certmode manual \
-  --certdir /home/dongtv28/.cache/tailscale/derper-certs \ # Directory containing certs
+  --certdir /home/dongtv/.cache/tailscale/derper-certs \ # Directory containing certs
   -mesh-with ztrust-relay-01.nextzero.vn,ztrust-relay-03.nextzero.vn \ # Other custom DERPs in the org to mesh with
   -mesh-psk-file /var/lib/derper/mesh.key # Private key for encryption between org DERPs
 Restart=always
@@ -161,7 +161,7 @@ sudo certbot certonly --standalone -d ztrust-relay-02.nextzero.vn
 Copy the certificates to your `certdir`:
 
 ```
-/home/dongtv28/.cache/tailscale/derper-certs/
+/home/dongtv/.cache/tailscale/derper-certs/
 ```
 
 Ensure they are named as follows:
@@ -176,7 +176,7 @@ Ensure they are named as follows:
 Simply place your certificate files into the `certdir` folder.
 
 <div>
- <img src="https://cache.giaohangtietkiem.vn/d/b929a6bc3460f8cb108facddf00126cb.png">
+ <img src="https://cdn.sanity.io/images/4kr3ytwu/production/4cc574d7d1a8130064636452ab35b00a9198d488-622x114.png">
 </div>
 
 ------
@@ -227,7 +227,7 @@ regions:
 
 Host this `DERPMAP` file on your organization's CDN, then update your Headscale `config.yaml` to point to it. (Make sure your Headscale controller can reach this URL):
 
-![image-20251126170922098](https://cache.giaohangtietkiem.vn/d/9a7c5161dc52c7b3804ff3bb42295ecb.png)
+![image-20251126170922098](https://cdn.sanity.io/images/4kr3ytwu/production/63c762ca8d4c4721b49deaed809da193614d3013-571x102.jpg)
 
 ------
 
