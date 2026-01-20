@@ -1,9 +1,9 @@
-# Non-Compliant Devices → Denied from Joining Ztrust
+# Non-Compliant Devices → Denied from Joining NextZero
 
-The Ztrust Agent integrates with endpoint security software to perform device security posture checks. Currently, Ztrust provides 9 free predefined `posture rule` templates.
+The NextZero Agent integrates with endpoint security software to perform device security posture checks. Currently, NextZero provides 9 free predefined `posture rule` templates.
 
 
-Example: Devices belonging to the SEC group are required to have both `Velociraptor` and `wazuh-agent` installed in order to join the Ztrust network. If the required software is not installed, the device will be `Blocked` from the Ztrust network. The detailed configuration is shown below:
+Example: Devices belonging to the SEC group are required to have both `Velociraptor` and `wazuh-agent` installed in order to join the NextZero network. If the required software is not installed, the device will be `Blocked` from the NextZero network. The detailed configuration is shown below:
 
 ![img.png](images/posture_checks.png)
 
