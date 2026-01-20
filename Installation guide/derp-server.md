@@ -176,7 +176,7 @@ Ensure they are named as follows:
 Simply place your certificate files into the `certdir` folder.
 
 <div>
- <img src="https://cache.giaohangtietkiem.vn/d/b929a6bc3460f8cb108facddf00126cb.png">
+ <img src="https://cdn.sanity.io/images/4kr3ytwu/production/4cc574d7d1a8130064636452ab35b00a9198d488-622x114.png">
 </div>
 
 ------
@@ -227,7 +227,7 @@ regions:
 
 Host this `DERPMAP` file on your organization's CDN, then update your Headscale `config.yaml` to point to it. (Make sure your Headscale controller can reach this URL):
 
-![image-20251126170922098](https://cache.giaohangtietkiem.vn/d/9a7c5161dc52c7b3804ff3bb42295ecb.png)
+![image-20251126170922098](https://cdn.sanity.io/images/4kr3ytwu/production/63c762ca8d4c4721b49deaed809da193614d3013-571x102.jpg)
 
 ------
 
