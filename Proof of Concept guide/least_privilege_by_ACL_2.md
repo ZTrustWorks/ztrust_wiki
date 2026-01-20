@@ -16,7 +16,7 @@ Go to the `Network Policy` tab → ACLs → Create ACL.
    Destinations: 10.110.240.48:80, 10.110.240.48:443
    ```
          
-    User `dongtv28` has two devices with NextZero Network IP addresses `100.64.17.76` and `100.64.78.145`. Only the device with IP `100.64.17.76` is allowed to access; the other device is denied.
+    User `dongtv28` has two devices with Ztrust Network IP addresses `100.64.17.76` and `100.64.78.145`. Only the device with IP `100.64.17.76` is allowed to access; the other device is denied.
    ![img.png](images/device_acl.png)
 
 3. Click `Save Changes` to save the policy.

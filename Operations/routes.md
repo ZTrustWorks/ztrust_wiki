@@ -5,27 +5,27 @@
 ## Requirements
 - Control access permissions of each employee device to internal network segments.
 - A single device may be allowed to access one or multiple subnets.
-- Each subnet requires only one device running the NextZero Agent to act as a gateway; installation on all servers is not required.
-- Deploy a gateway to register subnets into the NextZero Network.
+- Each subnet requires only one device running the Ztrust Agent to act as a gateway; installation on all servers is not required.
+- Deploy a gateway to register subnets into the Ztrust Network.
 
 **Deployment Example**
 
-| Device             | Role             | NextZero Network IP | Internal Subnet                   |
+| Device             | Role             | Ztrust Network IP | Internal Subnet                   |
 | ------------------ | ---------------- | ------------------|-----------------------------------|
-| **NextZero Agent 1** | Employee Client  | 100.x.y.55        | N/A                               |
-| **NextZero Agent 2** | Employee Client  | 100.x.y.66        | N/A                               |
-| **NextZero Agent 3** | Subnet Router    | 100.x.y.111       | 10.10.x.0/24 (Marketing Subnet)   |
-| **NextZero Agent 4** | Subnet Router    | 100.x.y.222       | 10.11.x.0/24 (Accounting Subnet)  |
+| **Ztrust Agent 1** | Employee Client  | 100.x.y.55        | N/A                               |
+| **Ztrust Agent 2** | Employee Client  | 100.x.y.66        | N/A                               |
+| **Ztrust Agent 3** | Subnet Router    | 100.x.y.111       | 10.10.x.0/24 (Marketing Subnet)   |
+| **Ztrust Agent 4** | Subnet Router    | 100.x.y.222       | 10.11.x.0/24 (Accounting Subnet)  |
 
-- Install the NextZero Agent on four devices, including:
-  - NextZero Agent 1 and NextZero Agent 2 are employee endpoint devices.
-  - NextZero Agent 3 is a device (workstation or server) located in the Marketing Subnet.
-  - NextZero Agent 4 is a device (workstation or server) located in the Accounting Subnet.
+- Install the Ztrust Agent on four devices, including:
+  - Ztrust Agent 1 and Ztrust Agent 2 are employee endpoint devices.
+  - Ztrust Agent 3 is a device (workstation or server) located in the Marketing Subnet.
+  - Ztrust Agent 4 is a device (workstation or server) located in the Accounting Subnet.
 
-- NextZero Agent 1 is granted access to resources in both the Accounting Subnet and the Marketing Subnet.
-- NextZero Agent 2 is granted access only to resources in the Marketing Subnet.
+- Ztrust Agent 1 is granted access to resources in both the Accounting Subnet and the Marketing Subnet.
+- Ztrust Agent 2 is granted access only to resources in the Marketing Subnet.
 
-For the NextZero Agent version designed for gateway servers, please contact the product team to download and install it.
+For the Ztrust Agent version designed for gateway servers, please contact the product team to download and install it.
 
 
 ## Configuration Steps
@@ -43,7 +43,7 @@ For the NextZero Agent version designed for gateway servers, please contact the 
   - **Ephemeral** (not recommended for gateway nodes): Specifies whether the key is issued for a temporary node. In this case, the key will automatically expire or be revoked when the node disconnects.
 
 ![img.png](images/create-auth_key.png)
-### 3. On each Gateway Node, log in using the newly created accounts and register the subnet router with the NextZero Network
+### 3. On each Gateway Node, log in using the newly created accounts and register the subnet router with the Ztrust Network
 **Ensure that IP forwarding is enabled on all gateway nodes (mandatory).**
 ```bash
 echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
@@ -51,16 +51,16 @@ echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale
 sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 
 ```
-**On NextZero Agent 3 (Marketing Subnet)**
+**On Ztrust Agent 3 (Marketing Subnet)**
 ```bash
-sudo NextZerocli login --server=https://ztcontroller.{org_domain} --auth-key={marketing_haproxy_gateway_01 auth key} --advertise-routes="10.10.x.0/24"
+sudo ztrustcli login --server=https://ztcontroller.{org_domain} --auth-key={marketing_haproxy_gateway_01 auth key} --advertise-routes="10.10.x.0/24"
 ```
-**On NextZero Agent 4 (Accountant Subnet)**
+**On Ztrust Agent 4 (Accountant Subnet)**
 ```bash
-sudo NextZerocli login --server=https://ztcontroller.{org_domain} --auth-key={accountant_haproxy_gateway_01 auth key} --advertise-routes="10.11.x.0/24"
+sudo ztrustcli login --server=https://ztcontroller.{org_domain} --auth-key={accountant_haproxy_gateway_01 auth key} --advertise-routes="10.11.x.0/24"
 ```
 
-### 4. On the NextZero Controller, approve and authorize the subnet routers to operate within the network
+### 4. On the Ztrust Controller, approve and authorize the subnet routers to operate within the network
 
 ![img.png](images/accept_node.png)
 ![img.png](images/accept_node_2.png)
@@ -68,7 +68,7 @@ sudo NextZerocli login --server=https://ztcontroller.{org_domain} --auth-key={ac
 **Wait a few minutes for the configuration to propagate across the entire network; the subnet router status will then change to `Serving`.**
 ![img.png](images/accept_node3.png)
 
-### 5. On the NextZero Controller, configure access control policies
+### 5. On the Ztrust Controller, configure access control policies
 
 Add a policy that allows only marketing employees to access marketing-related services within the 10.10.x.0/24 subnet on ports 80 and 443. The policy configuration is as follows:
 
