@@ -14,10 +14,7 @@
 
 ## 2. Download
 
-```bash
-
-git clone https://github.com/ZTrustWorks/ztrust_deploy.git
-```
+Dowload ZTrust Controller [here](https://nextzero.vn/download) (In tab **Server - Community Edition**)
 
 ## 3. Configuration
 
@@ -213,7 +210,7 @@ To enable secure gRPC/TLS communication between ZTrust Agent and ZTrust Controll
 
 **Step 1: Contact ZTrust Admin**
 
-Please contact ZTrust Admin to request a server certificate for your organization.
+Please contact [ZTrust Admin](https://web.telegram.org/a/#-1003135276877) to request a server certificate for your organization.
 You will receive the following files:
 
 - Server certificate
@@ -273,6 +270,13 @@ KEY_CERT_FILE_PATH=/etc/ztrust/certs/<your-controller-domain>.key
 > ⚠️ Make sure the file names exactly match the files in the certs directory.
 
 After updating the environment variables, restart the Controller service for changes to take effect.
+
+### Config Active code for license
+A code for active license. Get active code [here](https://nextzero.vn).
+```
+# Code for active license online
+ZTRUST_LICENSE_ACTIVATION_CODE=
+```
 
 ### Monitoring Configuration
 
