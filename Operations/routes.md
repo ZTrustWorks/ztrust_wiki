@@ -1,6 +1,6 @@
 # Node Gateway & Subnet Routers
 
-![img.png](images/node-gateway-topology.png)
+![img.png](images/node-gateway-topology-1.png)
 
 ## Requirements
 - Control access permissions of each employee device to internal network segments.
