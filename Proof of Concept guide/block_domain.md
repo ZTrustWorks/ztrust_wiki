@@ -1,4 +1,4 @@
-# Block Domain with ZTrust
+# Block Domain with NextZero
 
 ![DNS management](./images/dns_management.png)
 

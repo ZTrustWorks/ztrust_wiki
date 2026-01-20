@@ -10,7 +10,7 @@
 
 ## Authentication
 
-You can login to the ZTrust Controller using the following credentials:
+You can login to the NextZero Controller using the following credentials:
 
 Password is value set for `SUPER_ADMIN_PASSWORD` in the `.env` file. Default password is `changeme!`
 
