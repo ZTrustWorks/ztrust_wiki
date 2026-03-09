@@ -196,8 +196,6 @@ keep it as default
 
 - `AGENT_CONTROL_WORKER_COUNT`: you can change this environment based on your vCPU core in server, 1 worker per vCPU core, high value will improve performance but may cause high CPU usage
 
-- `CUSTOM_PROTOCOL_AGENT`: is custom protocol agent, for validate custom protocol agent, when redirect securely to agent, you should keep it as default
-
 - Others environment variables are optional, you should keep it as default
 
 <div>
