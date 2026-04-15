@@ -158,24 +158,32 @@ keep it as default
 
 ### Step 7: Certificate Configuration
 
-To enable secure gRPC/TLS communication between ZTrust Agent and ZTrust Controller, your Controller must be configured with a server certificate issued by ZTrust.
+To enable secure gRPC/TLS communication between ZTrust Agent and ZTrust Controller, the Controller needs a TLS certificate for the **public controller domain**. You can use **any valid cert** — a ZTrust-CA-issued cert is no longer required.
 
-- Server certificate
+**Cert options:**
+
+- **A. Let's Encrypt (recommended)** — reuse the same cert nginx uses. After running `setup-nginx.sh`, the cert lives at `/etc/letsencrypt/live/<your-controller-domain>/{fullchain.pem,privkey.pem}`. Copy or symlink into `backend/certs/`.
+- **B. Self-signed (lab)** — generate locally; agents must add it to their trust store manually.
+- **C. ZTrust CA-issued (legacy)** — contact [ZTrust Admin](https://web.telegram.org/a/#-1003135276877) to request:
 
 ```
 <your-controller-domain>.crt
-```
-
-- Server private key
-
-```
 <your-controller-domain>.key
 ```
 
 **Copy certificate files to certs directory**
 
-Copy the received files into the `backend/certs` directory on the controller host.
+Place the `.crt` and `.key` files into the `backend/certs` directory on the controller host.
 This directory will be mounted into the Docker container.
+
+Example with Let's Encrypt:
+```bash
+sudo cp /etc/letsencrypt/live/<your-controller-domain>/fullchain.pem \
+       backend/certs/<your-controller-domain>.crt
+sudo cp /etc/letsencrypt/live/<your-controller-domain>/privkey.pem \
+       backend/certs/<your-controller-domain>.key
+sudo chmod 600 backend/certs/<your-controller-domain>.key
+```
 
 Example structure:
 ```bash
