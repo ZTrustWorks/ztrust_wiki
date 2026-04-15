@@ -275,10 +275,15 @@ Expect: `HTTP/2 200` or `HTTP/2 204`.
 
 ### 7.2 Internal Controller (blocked from public = good)
 ```bash
-curl -sI https://inztcontroller.example.com/internal/api/v1/health
+curl -sI -X POST https://inztcontroller.example.com/internal/api/v1/auth/login
 ```
-Expect: `HTTP/2 403` (private IP ACL — confirms restriction works).
-From the server itself: `curl -sI http://127.0.0.1:8090/internal/api/v1/health` → `200`.
+Expect: `HTTP/2 403` (private IP ACL — confirms the internal domain is locked down).
+
+From the server itself (private network):
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' -X POST http://127.0.0.1:8090/internal/api/v1/auth/login
+```
+Expect: `400` / `401` (endpoint reachable, just missing body — confirms backend is up).
 
 ### 7.3 Frontend portal
 ```bash
