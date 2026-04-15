@@ -312,9 +312,9 @@ Finally, you can access to portal for quick test
 <img src="images/quick_test.png" align="center">
 </div>
 
-## 5. Nginx & Domain Setup (Production)
+## 5. Nginx & Domain Setup
 
-For production deployments with a public domain and SSL, set up Nginx as a reverse proxy.
+For deployments with a public domain and SSL, set up Nginx as a reverse proxy.
 
 ### Automated (Recommended)
 
@@ -352,6 +352,3 @@ sudo ./backend/scripts/setup-nginx.sh --dry-run
 
 For detailed manual nginx configuration, see [Nginx Reverse Proxy Setup](../docs/setup-nginx.md).
 
-<div>
-<img src="images/quick_test.png" align="center">
-</div>
