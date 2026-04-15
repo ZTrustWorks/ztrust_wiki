@@ -160,9 +160,6 @@ keep it as default
 
 To enable secure gRPC/TLS communication between ZTrust Agent and ZTrust Controller, your Controller must be configured with a server certificate issued by ZTrust.
 
-Please contact [ZTrust Admin](https://web.telegram.org/a/#-1003135276877) to request a server certificate for your organization.
-You will receive the following files:
-
 - Server certificate
 
 ```
