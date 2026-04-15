@@ -133,9 +133,11 @@ Must show 6 lines, all with non-empty values.
 
 ---
 
-## Step 3 — Provide gRPC TLS certificate (skip for lab)
+## Step 3 — Provide gRPC TLS certificate (Required)
 
-Agents connect to the Controller over **TLS-encrypted gRPC** on port `50051`. Any valid TLS cert for your public controller domain works.
+> ⚠️ **Required** — the backend will **not start** without this. Agents connect to the Controller over TLS-encrypted gRPC on port `50051`.
+
+Any valid TLS cert for your public controller domain works.
 
 **Pick one:**
 
@@ -156,8 +158,6 @@ Update `.env`:
 CERT_FILE_PATH=/etc/ztrust/certs/<public-domain>.crt
 KEY_CERT_FILE_PATH=/etc/ztrust/certs/<public-domain>.key
 ```
-
-> **Skip entirely**: leave both paths empty to disable gRPC TLS (agents cannot connect in prod — lab only).
 
 **Verify (if using Option A/C):**
 ```bash

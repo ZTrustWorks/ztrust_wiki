@@ -158,7 +158,9 @@ keep it as default
 <img src="images/be_integration_siem.png" align="center">
 </div>
 
-### Step 7: Certificate Configuration
+### Step 7: Certificate Configuration (Required)
+
+> ⚠️ **Required** — the backend will **not start** without a valid TLS certificate for gRPC communication with agents.
 
 To enable secure gRPC/TLS communication between ZTrust Agent and ZTrust Controller, the Controller needs a TLS certificate for the **public controller domain**. Any valid cert works.
 
