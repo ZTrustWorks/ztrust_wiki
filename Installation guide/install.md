@@ -246,11 +246,12 @@ Minimum required environment variables:
 Example:
 ```json
 {
-  "NEXT_PUBLIC_API_BASE_URL": "http://10.110.86.17:8090",
-  "NEXT_PUBLIC_WS_BASE_URL": "ws://10.110.86.17:8090",
+  "NEXT_PUBLIC_API_BASE_URL": "https://internal-ztcontroller.nextzero.vn",
+  "NEXT_PUBLIC_API_PUBLIC_URL": "https://ztcontroller.nextzero.vn",
+  "NEXT_PUBLIC_WS_BASE_URL": "wss://internal-ztcontroller.nextzero.vn",
   "NEXT_PUBLIC_LOCATION": "",
   "NEXT_PUBLIC_VERSION_APP": "1.0.0",
-  "NEXT_PUBLIC_DOMAIN_APP": "http://10.110.86.17:33000",
+  "NEXT_PUBLIC_DOMAIN_APP": "https://ztrust.nextzero.vn",
   "NEXT_PUBLIC_EMAIL_ORG_DOMAIN": "@nextzero.vn"
 }
 ```
