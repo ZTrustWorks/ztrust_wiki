@@ -98,9 +98,11 @@ You can change database connection in `.env` if you want to use external databas
 <img src="images/be_database.png" align="center">
 </div>
 
-### Step 3: Google OAuth Configuration
+### Step 3: Google OAuth Configuration (Required)
 
-*Follow this [link](https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid) for get client ID* 
+> ⚠️ **Required** — agents use Google SSO as the minimum login method. Without `GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET`, users cannot log in.
+
+*Follow this [link](https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid) for get client ID*
 
 Add ClientID and ClientSecret from Google OAuth in `.env`
 

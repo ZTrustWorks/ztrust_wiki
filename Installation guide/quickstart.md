@@ -93,26 +93,39 @@ All 3 files must exist.
 cp env.sample .env
 ```
 
-Edit `.env` and set **only these 3 variables** (everything else is auto-configured):
+Edit `.env` and set **these 5 required variables** (everything else is auto-configured):
 
 ```bash
+# 3 domains
 ENDPOINT_CONTROLLER_URL=https://ztcontroller.example.com
 ENDPOINT_CONTROLLER_INTERNAL_URL=https://inztcontroller.example.com
 ENDPOINT_CONTROLLER_FE_URL=https://ztrust.example.com
+
+# Google OAuth (REQUIRED — agents use Google SSO as minimum login method)
+GOOGLE_CLIENT_ID=<your-google-oauth-client-id>
+GOOGLE_CLIENT_SECRET=<your-google-oauth-client-secret>
 ```
+
+**Get Google OAuth credentials** at [Google Cloud Console → Credentials](https://console.cloud.google.com/apis/credentials). Add this **Authorized redirect URI**:
+
+```
+https://ztcontroller.example.com/public/api/v1/auth/google/callback
+```
+
+> Without `GOOGLE_CLIENT_ID`/`SECRET`, users **cannot log in** — this is not optional.
 
 > `setup.sh` will auto-generate: `HOST_IP`, all database passwords, `JWT_KEK`, `SUPER_ADMIN_PASSWORD`, and all database URIs. **Do not edit them manually.**
 
 **Optional (skip for minimum install):**
-- `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` — for Google SSO
 - `SMTP_*` — for email alerts
 - `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` — for Telegram alerts
+- Other OIDC providers (Microsoft, Okta, GitHub, Keycloak, Custom)
 
 **Verify:**
 ```bash
-grep -E '^ENDPOINT_CONTROLLER_(URL|INTERNAL_URL|FE_URL)' .env
+grep -E '^(ENDPOINT_CONTROLLER_(URL|INTERNAL_URL|FE_URL)|GOOGLE_CLIENT_(ID|SECRET))=' .env
 ```
-Must show 3 lines with your domains.
+Must show 5 lines, all with non-empty values.
 
 ---
 
