@@ -118,7 +118,7 @@ Must show 3 lines with your domains.
 
 ## Step 3 — Provide gRPC TLS certificate (skip for lab)
 
-Agents connect to the Controller over **TLS-encrypted gRPC** on port `50051`. **Any valid TLS cert for your public controller domain works** — ZTrust CA signing is no longer required.
+Agents connect to the Controller over **TLS-encrypted gRPC** on port `50051`. Any valid TLS cert for your public controller domain works.
 
 **Pick one:**
 
@@ -132,7 +132,6 @@ Agents connect to the Controller over **TLS-encrypted gRPC** on port `50051`. **
   sudo chmod 600 backend/certs/<public-domain>.key
   ```
 - **B. Self-signed (lab only)** — agents must add it to their trust store manually.
-- **C. ZTrust CA-issued (legacy)** — contact [ZTrust Admin](https://web.telegram.org/a/#-1003135276877).
 
 Update `.env`:
 
