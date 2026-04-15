@@ -27,6 +27,7 @@ cd ztrust_deploy
 
 You can get the latest Headscale config file from [here](https://github.com/juanfont/headscale/blob/main/config-example.yaml)
 
+### Step 1: Create folder
 ```bash
 # Create config directory
 mkdir -p backend/config/headscale
@@ -38,7 +39,7 @@ cp backend/config/example/headscale/config.yaml backend/config/headscale/config.
 touch backend/config/headscale/extra-records.json
 ```
 
-### Server Configuration
+### Step 2: Server Configuration
 
 Config your public domain in `server_url` in `backend/config/headscale/config.yaml`
 
@@ -48,41 +49,7 @@ Config your public domain in `server_url` in `backend/config/headscale/config.ya
 <img src="images/config_server_url.png">
 </div>
 
-### DERP Configuration
-
-Config DERP server
-if you have your own DERP server, config it in `backend/config/headscale/config.yaml`
-
-For setup DERP server, please follow [this](https://github.com/ZTrustWorks/ztrust_wiki/blob/main/Installation%20guide/derp-server.md) guide
-
-DERP can be configured via `urls` (eg. https://derp.nextzero.vn) or `paths` (use local file `derp-example.yaml`)
-
-E.g: `derp-example.yaml`
-
-```yaml
-regions:
-  1: null # Disable DERP region with ID 1
-  900:
-    regionid: 900
-    regioncode: custom
-    regionname: My Region
-    nodes:
-      - name: 900a
-        regionid: 900
-        hostname: myderp.example.com
-        ipv4: 198.51.100.1
-        ipv6: 2001:db8::1
-        stunport: 0
-        stunonly: false
-        derpport: 0
-```
-
-<div>
-<img src="images/derp_config.png">
-</div>
-
-
-### Database Configuration
+### Step 3: Database Configuration
 
 Use `postgres` as database
 
@@ -103,7 +70,7 @@ Config postgresql connection in `backend/config/headscale/config.yaml`
 cp env.sample .env
 ```
 
-### Server Configuration
+### Step 1: Server Configuration
 
 Config your public domain with valid SSL certificate in `ENDPOINT_CONTROLLER_URL` in `.env`
 
@@ -120,7 +87,7 @@ E.g: `ENDPOINT_CONTROLLER_URL=https://ztcontroller.nextzero.vn`
 <img src="images/be_server_url.png" align="center">
 </div>
 
-### Database Configuration
+### Step 2: Database Configuration
 
 You can change database connection in `.env` if you want to use external database for more high availability. Otherwise, `setup.sh` will create internal `mongo`, `postgres` and `redis` containers automatically.
 
@@ -129,13 +96,13 @@ You can change database connection in `.env` if you want to use external databas
 </div>
 
 
-### Config Headscale URL (You should keep it as default)
+### Step 3: Config Headscale URL (You should keep it as default)
 
 <div>
 <img src="images/be_headscale_url.png" align="center">
 </div>
 
-### Google OAuth Configuration
+### Step 4: Google OAuth Configuration
 
 *Follow this [link](https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid) for get client ID* 
 
@@ -151,7 +118,7 @@ Ensure add `https://<your-controller-domain>/public/api/v1/auth/google/callback`
 <img src="images/be_google_oauth.png" align="center">
 </div>
 
-### Security Configuration
+### Step 5: Security Configuration
 
 Keep `AGENT_STATIC_TOKEN` as default, for agent to connect to controller while authentication
 
@@ -164,7 +131,7 @@ keep it as default
 <img src="images/be_security.png" align="center">
 </div>
 
-### Alert Configuration
+### Step 6: Alert Configuration
 
 **Email Alert**
 
@@ -184,7 +151,7 @@ keep it as default
 <img src="images/be_alert.png" align="center">
 </div>
 
-### Integration Configuration
+### Step 7: Integration Configuration
 
 **Send Log to SIEM via Kafka**
 
@@ -192,21 +159,9 @@ keep it as default
 <img src="images/be_integration_siem.png" align="center">
 </div>
 
-### Agent Configuration
-
-- `AGENT_CONTROL_WORKER_COUNT`: you can change this environment based on your vCPU core in server, 1 worker per vCPU core, high value will improve performance but may cause high CPU usage
-
-- Others environment variables are optional, you should keep it as default
-
-<div>
-<img src="images/be_agent.png" align="center">
-</div>
-
-### Certificate Configuration
+### Step 8: Certificate Configuration
 
 To enable secure gRPC/TLS communication between ZTrust Agent and ZTrust Controller, your Controller must be configured with a server certificate issued by ZTrust.
-
-**Step 1: Contact ZTrust Admin**
 
 Please contact [ZTrust Admin](https://web.telegram.org/a/#-1003135276877) to request a server certificate for your organization.
 You will receive the following files:
@@ -226,7 +181,7 @@ You will receive the following files:
 > ⚠️ These files are issued by ZTrust CA and are unique per customer.
 The private key must be kept confidential and must not be committed to Git.
 
-**Step 2: Copy certificate files to certs directory**
+**Copy certificate files to certs directory**
 
 Copy the received files into the `backend/certs` directory on the controller host.
 This directory will be mounted into the Docker container.
@@ -248,7 +203,7 @@ cp <your-controller-domain>.key backend/certs/
   <img src="images/be_certs.png" align="center">
 </div>
 
-**Step 3: Mount certs directory into Docker**
+**Mount certs directory into Docker**
 Ensure the certs directory is mounted into the container (read-only is recommended):
 
 ```yaml
@@ -256,7 +211,7 @@ volumes:
   - ./certs:/etc/ztrust/certs:ro
 ```
 
-**Step 4: Update environment variables**
+**Update environment variables**
 
 Update your .env file or Docker environment variables as follows:
 ```env
@@ -269,20 +224,12 @@ KEY_CERT_FILE_PATH=/etc/ztrust/certs/<your-controller-domain>.key
 
 After updating the environment variables, restart the Controller service for changes to take effect.
 
-### Config Active code for license
+### Step 9: Config Active code for license
 A code for active license. Get active code [here](https://nextzero.vn).
 ```
 # Code for active license online
 ZTRUST_LICENSE_ACTIVATION_CODE=
 ```
-
-### Monitoring Configuration
-
-You can monitor metrics of `mongo`, `postgres`, `redis`, `headscale` and `ZTrust BE` via `grafana` with `prometheus`
-
-<div>
-<img src="images/be_monitoring.png" align="center">
-</div>
 
 ## 3.3. Config frontend environment variables
 
@@ -360,7 +307,7 @@ Check logs
 sudo docker logs <container_name>
 ```
 
-Finally, you can access to ZTrust portal via IP address of server for quick test 
+Finally, you can access to portal for quick test 
 
 <div>
 <img src="images/quick_test.png" align="center">
