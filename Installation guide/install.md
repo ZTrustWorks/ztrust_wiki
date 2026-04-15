@@ -172,9 +172,6 @@ To enable secure gRPC/TLS communication between ZTrust Agent and ZTrust Controll
 <your-controller-domain>.key
 ```
 
-> ⚠️ These files are issued by ZTrust CA and are unique per customer.
-The private key must be kept confidential and must not be committed to Git.
-
 **Copy certificate files to certs directory**
 
 Copy the received files into the `backend/certs` directory on the controller host.
