@@ -14,7 +14,7 @@
 
 ## 2. Download
 
-Dowload ZTrust Controller [here](https://nextzero.vn/download) (In tab **Server - Community Edition**)
+Download ZTrust Controller [here](https://nextzero.vn/download) (In tab **Server - Community Edition**)
 
 ## 3. Configuration
 
@@ -28,20 +28,23 @@ cd ztrust_deploy
 You can get the latest Headscale config file from [here](https://github.com/juanfont/headscale/blob/main/config-example.yaml)
 
 ### Step 1: Create folder
+
+> **Note**: `setup.sh` handles this automatically (interactive prompt for server URL). You only need to do this manually if you want to pre-configure before running `setup.sh`.
+
 ```bash
-# Create config directory
-mkdir -p backend/config/headscale
+# Create config directory (note: extra config/ subfolder required)
+mkdir -p backend/config/headscale/config
 
 # Copy config file
-cp backend/config/example/headscale/config.yaml backend/config/headscale/config.yaml
+cp backend/config/example/headscale/config.yaml backend/config/headscale/config/config.yaml
 
-# Create extra-records.json file
+# Create extra-records.json file (also auto-created by setup.sh)
 touch backend/config/headscale/extra-records.json
 ```
 
 ### Step 2: Server Configuration
 
-Config your public domain in `server_url` in `backend/config/headscale/config.yaml`
+Config your public domain in `server_url` in `backend/config/headscale/config/config.yaml`
 
 `listen_addr` should be `0.0.0.0:8080`
 
@@ -57,7 +60,7 @@ Use `postgres` as database
 <img src="images/database_postgres.png">
 </div>
 
-Config postgresql connection in `backend/config/headscale/config.yaml`
+Config postgresql connection in `backend/config/headscale/config/config.yaml`
 
 <div>
 <img src="images/database_postgres_config.png">
@@ -103,7 +106,8 @@ Add ClientID and ClientSecret from Google OAuth in `.env`
 
 - `GOOGLE_CLIENT_ID`: Client ID from Google OAuth
 - `GOOGLE_CLIENT_SECRET`: Client Secret from Google OAuth
-- `GOOGLE_REDIRECT_URL`: Redirect URL from Google OAuth should be `https://<your-controller-domain>/public/api/v1/auth/google/callback`
+
+> The redirect URL is automatically derived from `ENDPOINT_CONTROLLER_URL` — no need to set it manually.
 
 Ensure add `https://<your-controller-domain>/public/api/v1/auth/google/callback` to authorized redirect URIs in Google OAuth on Google Cloud Console
 
@@ -260,6 +264,7 @@ Example:
 
 After configuration, run `setup.sh` script to start all containers.
 
+
 ```bash
 chmod +x setup.sh
 sudo ./setup.sh
@@ -271,7 +276,7 @@ You will be asked to input for additional integrations press `Enter` to skip if 
 <img src="images/setup.png" align="center">
 </div>
 
-Next, you will be asked to input for headscale url, press `Enter` to skip if you configured it in `./backend/config/headscale/config.yaml` file
+Next, you will be asked to input for headscale url, press `Enter` to skip if you configured it in `./backend/config/headscale/config/config.yaml` file
 
 <div>
 <img src="images/setup_headscale.png" align="center">
@@ -302,6 +307,50 @@ sudo docker logs <container_name>
 ```
 
 Finally, you can access to portal for quick test 
+
+<div>
+<img src="images/quick_test.png" align="center">
+</div>
+
+## 5. Nginx & Domain Setup (Production)
+
+For production deployments with a public domain and SSL, set up Nginx as a reverse proxy.
+
+### Automated (Recommended)
+
+Run the setup script — it reads `ENDPOINT_CONTROLLER_URL` and `ENDPOINT_CONTROLLER_FE_URL` from your `.env` and generates the correct configs automatically:
+
+```bash
+sudo ./backend/scripts/setup-nginx.sh
+```
+
+The script will:
+- Generate nginx configs for Backend (API + Headscale) and Frontend
+- Optionally run Certbot (Let's Encrypt) to obtain SSL certificates
+- Enable sites, test, and reload nginx
+- Configure ufw firewall rules (ports 80, 443, 50051)
+
+Use `--dry-run` to preview without installing:
+```bash
+sudo ./backend/scripts/setup-nginx.sh --dry-run
+```
+
+### Port Requirements
+
+| Port | Purpose | Notes |
+|------|---------|-------|
+| `443` | HTTPS (API + Headscale + Frontend) | Public |
+| `80` | HTTP → HTTPS redirect | Public |
+| `50051` | gRPC agent connections | Must be open to agent machines |
+
+> **Important**: Port `50051` is **not** proxied through nginx. Agents connect to it directly. Open it in your firewall:
+> ```bash
+> sudo ufw allow 50051/tcp
+> ```
+
+### Manual Setup
+
+For detailed manual nginx configuration, see [Nginx Reverse Proxy Setup](../docs/setup-nginx.md).
 
 <div>
 <img src="images/quick_test.png" align="center">
