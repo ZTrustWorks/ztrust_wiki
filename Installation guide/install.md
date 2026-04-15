@@ -219,11 +219,14 @@ KEY_CERT_FILE_PATH=/etc/ztrust/certs/<your-controller-domain>.key
 
 After updating the environment variables, restart the Controller service for changes to take effect.
 
-### Step 8: Config Active code for license
-A code for active license. Get active code [here](https://nextzero.vn).
+### Step 8: Config Active code for license (Required)
+
+> ⚠️ **Required** — without a valid activation code, the server will not run in production mode.
+
+The activation code is **sent to your email automatically** when you download the ZTrust server bundle from the [nextzero.vn](https://nextzero.vn) portal. Check your inbox and paste it into `.env`:
+
 ```
-# Code for active license online
-ZTRUST_LICENSE_ACTIVATION_CODE=
+ZTRUST_LICENSE_ACTIVATION_CODE=<code-from-email>
 ```
 
 ## 3.3. Config frontend environment variables

@@ -93,7 +93,7 @@ All 3 files must exist.
 cp env.sample .env
 ```
 
-Edit `.env` and set **these 5 required variables** (everything else is auto-configured):
+Edit `.env` and set **these 6 required variables** (everything else is auto-configured):
 
 ```bash
 # 3 domains
@@ -104,6 +104,9 @@ ENDPOINT_CONTROLLER_FE_URL=https://ztrust.example.com
 # Google OAuth (REQUIRED — agents use Google SSO as minimum login method)
 GOOGLE_CLIENT_ID=<your-google-oauth-client-id>
 GOOGLE_CLIENT_SECRET=<your-google-oauth-client-secret>
+
+# License (REQUIRED — sent to your email when downloading from nextzero.vn portal)
+ZTRUST_LICENSE_ACTIVATION_CODE=<code-from-email>
 ```
 
 **Get Google OAuth credentials** at [Google Cloud Console → Credentials](https://console.cloud.google.com/apis/credentials). Add this **Authorized redirect URI**:
@@ -112,7 +115,8 @@ GOOGLE_CLIENT_SECRET=<your-google-oauth-client-secret>
 https://ztcontroller.example.com/public/api/v1/auth/google/callback
 ```
 
-> Without `GOOGLE_CLIENT_ID`/`SECRET`, users **cannot log in** — this is not optional.
+> Without `GOOGLE_CLIENT_ID`/`SECRET`, users **cannot log in**.
+> Without `ZTRUST_LICENSE_ACTIVATION_CODE`, the server **will not start** in prod mode.
 
 > `setup.sh` will auto-generate: `HOST_IP`, all database passwords, `JWT_KEK`, `SUPER_ADMIN_PASSWORD`, and all database URIs. **Do not edit them manually.**
 
@@ -123,9 +127,9 @@ https://ztcontroller.example.com/public/api/v1/auth/google/callback
 
 **Verify:**
 ```bash
-grep -E '^(ENDPOINT_CONTROLLER_(URL|INTERNAL_URL|FE_URL)|GOOGLE_CLIENT_(ID|SECRET))=' .env
+grep -E '^(ENDPOINT_CONTROLLER_(URL|INTERNAL_URL|FE_URL)|GOOGLE_CLIENT_(ID|SECRET)|ZTRUST_LICENSE_ACTIVATION_CODE)=' .env
 ```
-Must show 5 lines, all with non-empty values.
+Must show 6 lines, all with non-empty values.
 
 ---
 
