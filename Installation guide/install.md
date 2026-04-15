@@ -350,5 +350,5 @@ sudo ./backend/scripts/setup-nginx.sh --dry-run
 
 ### Manual Setup
 
-For detailed manual nginx configuration, see [Nginx Reverse Proxy Setup](../docs/setup-nginx.md).
+For detailed manual nginx configuration, see [Nginx Reverse Proxy Setup](https://github.com/ZTrustWorks/ztrust_deploy/blob/main/docs/setup-nginx.md).
 
