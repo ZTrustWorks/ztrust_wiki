@@ -111,7 +111,7 @@ Ensure add `https://<your-controller-domain>/public/api/v1/auth/google/callback`
 <img src="images/be_google_oauth.png" align="center">
 </div>
 
-### Step 5: Security Configuration
+### Step 4: Security Configuration
 
 Keep `AGENT_STATIC_TOKEN` as default, for agent to connect to controller while authentication
 
@@ -124,7 +124,7 @@ keep it as default
 <img src="images/be_security.png" align="center">
 </div>
 
-### Step 6: Alert Configuration
+### Step 5: Alert Configuration
 
 **Email Alert**
 
@@ -144,7 +144,7 @@ keep it as default
 <img src="images/be_alert.png" align="center">
 </div>
 
-### Step 7: Integration Configuration
+### Step 6: Integration Configuration
 
 **Send Log to SIEM via Kafka**
 
@@ -152,7 +152,7 @@ keep it as default
 <img src="images/be_integration_siem.png" align="center">
 </div>
 
-### Step 8: Certificate Configuration
+### Step 7: Certificate Configuration
 
 To enable secure gRPC/TLS communication between ZTrust Agent and ZTrust Controller, your Controller must be configured with a server certificate issued by ZTrust.
 
@@ -217,7 +217,7 @@ KEY_CERT_FILE_PATH=/etc/ztrust/certs/<your-controller-domain>.key
 
 After updating the environment variables, restart the Controller service for changes to take effect.
 
-### Step 9: Config Active code for license
+### Step 8: Config Active code for license
 A code for active license. Get active code [here](https://nextzero.vn).
 ```
 # Code for active license online
