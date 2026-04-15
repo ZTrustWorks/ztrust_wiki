@@ -95,14 +95,7 @@ You can change database connection in `.env` if you want to use external databas
 <img src="images/be_database.png" align="center">
 </div>
 
-
-### Step 3: Config Headscale URL (You should keep it as default)
-
-<div>
-<img src="images/be_headscale_url.png" align="center">
-</div>
-
-### Step 4: Google OAuth Configuration
+### Step 3: Google OAuth Configuration
 
 *Follow this [link](https://developers.google.com/identity/oauth2/web/guides/get-google-api-clientid) for get client ID* 
 
